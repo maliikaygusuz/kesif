@@ -72,6 +72,13 @@
     display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px;
   }
   .newschool:active{background:#9a4517;}
+  .databtn-row{display:flex;gap:8px;margin-top:8px;}
+  .databtn{
+    flex:1;background:var(--card);color:var(--ink-soft);border:1.5px solid var(--line);border-radius:10px;
+    padding:11px 8px;font-size:12.5px;font-weight:600;font-family:inherit;
+    display:flex;align-items:center;justify-content:center;gap:6px;
+  }
+  .databtn:active{background:var(--line-soft);}
   .empty-hint{
     text-align:center;color:var(--ink-soft);font-size:13.5px;padding:36px 20px;
     border:1.5px dashed var(--line);border-radius:10px;margin-bottom:12px;
@@ -364,14 +371,56 @@ const STORAGE_KEY = 'lan-survey-schools-v1';
 
 async function loadData(){
   try{
-    const res = await window.storage.get(STORAGE_KEY, false);
-    if(res && res.value){ SCHOOLS = JSON.parse(res.value); }
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){ SCHOOLS = JSON.parse(raw); }
   }catch(e){ SCHOOLS = {}; }
 }
 async function saveData(){
-  try{ await window.storage.set(STORAGE_KEY, JSON.stringify(SCHOOLS), false); }
-  catch(e){ console.error('Kayıt hatası', e); }
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(SCHOOLS)); }
+  catch(e){ console.error('Kayıt hatası', e); showToast('Kayıt başarısız oldu'); }
 }
+
+/* ---- Dışa / İçe aktarma (cihazlar arası taşıma) ---- */
+window.exportData = function(){
+  const data = JSON.stringify(SCHOOLS, null, 2);
+  const blob = new Blob([data], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const d = new Date();
+  const stamp = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  a.href = url;
+  a.download = 'saha-kesif-yedek-'+stamp+'.json';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  showToast('Yedek dosyası indirildi');
+};
+window.triggerImport = function(){
+  const input = document.getElementById('importFile');
+  if(input) input.click();
+};
+window.importDataFile = function(input){
+  const file = input.files && input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    let parsed;
+    try{ parsed = JSON.parse(e.target.result); }
+    catch(err){ showToast('Dosya okunamadı, geçersiz JSON'); input.value=''; return; }
+    if(typeof parsed !== 'object' || parsed===null){ showToast('Dosya formatı tanınmadı'); input.value=''; return; }
+    const incomingCount = Object.keys(parsed).length;
+    const ok = confirm(incomingCount+' okul içe aktarılacak. Aynı isimli/ID\'li okullar mevcut verilerin üzerine yazılır, diğerleri eklenir. Devam edilsin mi?');
+    if(!ok){ input.value=''; return; }
+    SCHOOLS = Object.assign({}, SCHOOLS, parsed);
+    saveData();
+    VIEW='list'; CURRENT_ID=null;
+    render();
+    showToast('İçe aktarma tamamlandı');
+    input.value='';
+  };
+  reader.readAsText(file);
+};
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
 
 /* ================= HESAPLAMALAR ================= */
@@ -470,6 +519,11 @@ function renderList(){
     });
   }
   html += `<button class="newschool" onclick="createSchool()">+ Yeni Okul Ekle</button>`;
+  html += `<div class="databtn-row">
+    <button class="databtn" onclick="exportData()">⭳ Dışa Aktar</button>
+    <button class="databtn" onclick="triggerImport()">⭱ İçe Aktar</button>
+  </div>`;
+  html += `<input type="file" id="importFile" accept="application/json" style="display:none" onchange="importDataFile(this)">`;
   html += `<div class="ref-toggle" onclick="toggleRef()">${window.__refOpen?'Referans tabloyu gizle':'Şartname referans tablosunu göster'}</div>`;
   if(window.__refOpen) html += renderRefPanel();
   app.innerHTML = html;
