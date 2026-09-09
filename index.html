@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Saha Keşif — Data Ucu Hesap Aracı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2b3a;
+    --ink-soft:#3d5164;
+    --paper:#f1efe6;
+    --card:#faf9f4;
+    --line:#cdc6b4;
+    --line-soft:#e3ddcb;
+    --copper:#b5541f;
+    --copper-soft:#f0ddce;
+    --steel:#2f5d84;
+    --steel-soft:#dbe6ee;
+    --warn:#8a4b12;
+    --warn-bg:#f7e6d2;
+    --danger:#a13a3a;
+    --danger-bg:#f5dede;
+    --ok:#3f6b4c;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      linear-gradient(var(--paper),var(--paper)),
+      repeating-linear-gradient(0deg, rgba(28,43,58,0.035) 0px, rgba(28,43,58,0.035) 1px, transparent 1px, transparent 28px),
+      repeating-linear-gradient(90deg, rgba(28,43,58,0.035) 0px, rgba(28,43,58,0.035) 1px, transparent 1px, transparent 28px);
+    color:var(--ink);
+    font-family:'Space Grotesk',sans-serif;
+    min-height:100vh;
+    padding-bottom:40px;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  header.app{
+    background:var(--ink);
+    color:var(--paper);
+    padding:16px 16px 14px;
+    position:sticky;
+    top:0;
+    z-index:20;
+    border-bottom:3px solid var(--copper);
+  }
+  header.app .row1{display:flex;align-items:center;gap:10px;}
+  header.app h1{font-size:17px;margin:0;font-weight:600;letter-spacing:.2px;}
+  header.app .sub{font-size:11.5px;color:#b9c4cd;margin-top:3px;font-family:'IBM Plex Mono',monospace;}
+  .backbtn{
+    background:transparent;border:1.5px solid #56697a;color:var(--paper);
+    border-radius:7px;padding:6px 10px;font-size:13px;font-family:inherit;
+    display:flex;align-items:center;gap:5px;flex-shrink:0;
+  }
+  .backbtn:active{background:#2a3c4e;}
+  main{max-width:640px;margin:0 auto;padding:14px 12px 8px;}
+
+  /* ---- Okul listesi ---- */
+  .school-card{
+    background:var(--card);border:1.5px solid var(--line);border-radius:10px;
+    padding:14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:10px;
+  }
+  .school-card .name{font-weight:600;font-size:15.5px;}
+  .school-card .meta{font-size:11.5px;color:var(--ink-soft);margin-top:4px;font-family:'IBM Plex Mono',monospace;}
+  .school-card .arrow{color:var(--copper);font-size:20px;flex-shrink:0;}
+  .newschool{
+    background:var(--copper);color:#fff;border:none;border-radius:10px;
+    padding:14px;width:100%;font-size:15px;font-weight:600;font-family:inherit;
+    display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px;
+  }
+  .newschool:active{background:#9a4517;}
+  .empty-hint{
+    text-align:center;color:var(--ink-soft);font-size:13.5px;padding:36px 20px;
+    border:1.5px dashed var(--line);border-radius:10px;margin-bottom:12px;
+  }
+
+  /* ---- Özet çubuğu ---- */
+  .summary-bar{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);border:1.5px solid var(--line);border-radius:10px;overflow:hidden;
+    margin-bottom:14px;position:sticky;top:74px;z-index:15;
+  }
+  .summary-bar .cell{background:var(--ink);color:var(--paper);padding:9px 6px;text-align:center;}
+  .summary-bar .cell .num{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;display:block;}
+  .summary-bar .cell .lbl{font-size:9.5px;color:#a9b7c2;text-transform:uppercase;letter-spacing:.4px;margin-top:2px;display:block;}
+  .summary-bar .cell.accent{background:var(--copper);}
+  .summary-bar .cell.accent .lbl{color:#f3d9c9;}
+  .summary-bar .cell.steel{background:var(--steel);}
+  .summary-bar .cell.steel .lbl{color:#cfe0ec;}
+
+  .sys-card{
+    background:var(--card);border:1.5px solid var(--copper);border-radius:10px;margin-bottom:14px;overflow:hidden;
+  }
+  .sys-head{
+    display:flex;justify-content:space-between;align-items:center;padding:11px 13px;background:var(--copper-soft);
+    font-weight:600;font-size:13.5px;color:var(--copper);cursor:pointer;
+  }
+  .sys-body{padding:12px 13px 14px;}
+  .sys-body h4{margin:0 0 6px;font-size:12.5px;color:var(--ink);}
+  .sys-result{
+    display:flex;align-items:baseline;gap:10px;background:#fff;border:1.5px solid var(--line-soft);
+    border-radius:8px;padding:9px 11px;margin-bottom:6px;
+  }
+  .sys-result.warn2{border-color:var(--warn);background:var(--warn-bg);}
+  .sys-tip{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:15px;color:var(--copper);}
+  .sys-result.warn2 .sys-tip{color:var(--warn);}
+  .sys-desc{font-size:11.5px;color:var(--ink-soft);}
+  .sys-line{font-size:12px;color:var(--ink-soft);line-height:1.5;margin-bottom:4px;}
+  .sys-cite{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a8264;display:block;margin-top:2px;}
+  .sys-list{margin:6px 0 0;padding-left:18px;}
+  .sys-list li{font-size:12px;color:var(--ink-soft);line-height:1.5;margin-bottom:7px;}
+  .sys-list li b{color:var(--ink);}
+
+  .schoolname-edit{
+    width:100%;font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;
+    border:none;border-bottom:2px solid var(--line);background:transparent;color:var(--ink);
+    padding:4px 2px 8px;margin-bottom:2px;
+  }
+  .schoolname-edit:focus{outline:none;border-color:var(--copper);}
+  .school-sub{font-size:11.5px;color:var(--ink-soft);margin:0 2px 14px;font-family:'IBM Plex Mono',monospace;}
+
+  /* ---- Kat kartı ---- */
+  .floor{
+    background:var(--card);border:1.5px solid var(--line);border-radius:10px;
+    margin-bottom:12px;overflow:hidden;
+  }
+  .floor-head{
+    display:flex;align-items:center;gap:8px;padding:11px 12px;background:#eeead9;
+    border-bottom:1.5px solid var(--line);
+  }
+  .floor-head input{
+    flex:1;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px;
+    border:none;background:transparent;color:var(--ink);padding:2px 0;min-width:0;
+  }
+  .floor-head input:focus{outline:none;}
+  .floor-del{
+    background:none;border:none;color:var(--danger);font-size:18px;padding:2px 4px;flex-shrink:0;
+  }
+  .floor-body{padding:10px 10px 12px;}
+  .room-row{
+    border:1.5px solid var(--line-soft);border-radius:8px;padding:9px 10px;margin-bottom:8px;background:#fff;
+  }
+  .room-row .top{display:flex;gap:8px;align-items:flex-start;}
+  .room-row .rlabel{flex:1;min-width:0;}
+  .room-row .rlabel .name{font-size:13.5px;font-weight:600;line-height:1.3;}
+  .room-row .rlabel .cat{font-size:11px;color:var(--ink-soft);margin-top:1px;}
+  .room-del{background:none;border:none;color:var(--danger);font-size:17px;padding:0 2px;flex-shrink:0;}
+  .room-controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;align-items:center;}
+  .stepper{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:7px;overflow:hidden;}
+  .stepper button{width:28px;height:28px;background:#f2f0e6;border:none;font-size:15px;color:var(--ink);font-family:monospace;}
+  .stepper button:active{background:var(--line-soft);}
+  .stepper .val{width:30px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13.5px;}
+  .stepper-label{font-size:10.5px;color:var(--ink-soft);margin-right:2px;}
+  .badge{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;padding:3px 7px;border-radius:5px;
+    white-space:nowrap;
+  }
+  .badge.data{background:var(--copper-soft);color:var(--copper);}
+  .badge.enerji{background:#e9e3d0;color:#6b5a2e;}
+  .badge.ap{background:var(--steel-soft);color:var(--steel);}
+  .badge.excl{background:var(--danger-bg);color:var(--danger);}
+  .cap-warn{font-size:10.5px;color:var(--warn);margin-top:5px;background:var(--warn-bg);padding:3px 7px;border-radius:5px;display:inline-block;}
+  .note-input{
+    width:100%;border:none;border-top:1px dashed var(--line-soft);margin-top:8px;padding-top:6px;
+    font-size:11.5px;font-family:inherit;color:var(--ink-soft);background:transparent;
+  }
+  .note-input:focus{outline:none;}
+  .floor-summary{
+    display:flex;gap:14px;flex-wrap:wrap;padding:8px 2px 2px;font-size:11.5px;color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace;border-top:1px dashed var(--line-soft);margin-top:4px;
+  }
+  .floor-summary b{color:var(--ink);}
+
+  .add-room-btn, .add-floor-btn{
+    width:100%;border:1.5px dashed var(--copper);color:var(--copper);background:transparent;
+    border-radius:8px;padding:10px;font-size:13.5px;font-weight:600;font-family:inherit;
+    display:flex;align-items:center;justify-content:center;gap:6px;
+  }
+  .add-room-btn:active,.add-floor-btn:active{background:var(--copper-soft);}
+  .add-floor-btn{margin-bottom:14px;}
+
+  /* ---- Oda ekleme paneli (arama) ---- */
+  .picker-backdrop{
+    position:fixed;inset:0;background:rgba(20,28,36,.5);z-index:50;display:flex;align-items:flex-end;
+  }
+  .picker{
+    background:var(--paper);width:100%;max-height:85vh;border-radius:16px 16px 0 0;
+    display:flex;flex-direction:column;border-top:3px solid var(--copper);
+  }
+  .picker-head{padding:14px 14px 10px;border-bottom:1.5px solid var(--line);}
+  .picker-head h3{margin:0 0 8px;font-size:15px;}
+  .picker-head input{
+    width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;
+    font-size:14.5px;font-family:inherit;background:#fff;
+  }
+  .picker-head input:focus{outline:none;border-color:var(--copper);}
+  .picker-list{overflow-y:auto;padding:6px 8px;flex:1;}
+  .picker-item{
+    padding:10px 10px;border-bottom:1px solid var(--line-soft);display:flex;justify-content:space-between;
+    align-items:center;gap:8px;
+  }
+  .picker-item .pname{font-size:13.5px;font-weight:600;}
+  .picker-item .pcat{font-size:11px;color:var(--ink-soft);margin-top:1px;}
+  .picker-item .ptags{display:flex;gap:4px;flex-shrink:0;}
+  .picker-item.excluded{opacity:.7;}
+  .picker-close{
+    padding:12px;text-align:center;font-size:13.5px;color:var(--ink-soft);border-top:1.5px solid var(--line);
+    background:var(--card);
+  }
+  .picker-custom{
+    margin:8px 8px 14px;padding:10px;border:1.5px dashed var(--line);border-radius:8px;font-size:12.5px;
+    color:var(--ink-soft);text-align:center;
+  }
+  .picker-custom button{
+    margin-top:8px;background:var(--ink);color:#fff;border:none;border-radius:7px;padding:8px 14px;
+    font-size:12.5px;font-family:inherit;
+  }
+
+  /* ---- Alt eylemler ---- */
+  .bottom-actions{display:flex;gap:8px;margin-top:6px;}
+  .action-btn{
+    flex:1;border-radius:8px;padding:11px;font-size:13px;font-weight:600;font-family:inherit;border:none;
+  }
+  .action-btn.copy{background:var(--steel);color:#fff;}
+  .action-btn.del{background:transparent;color:var(--danger);border:1.5px solid var(--danger-bg);}
+
+  /* ---- Referans paneli ---- */
+  .ref-toggle{
+    text-align:center;font-size:12px;color:var(--steel);padding:10px;text-decoration:underline;
+  }
+  .ref-panel{
+    background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:12px;margin-bottom:14px;
+    font-size:12px;
+  }
+  .ref-panel table{width:100%;border-collapse:collapse;font-size:11.5px;}
+  .ref-panel td{padding:4px 2px;border-bottom:1px solid var(--line-soft);}
+  .ref-panel td:last-child{text-align:right;font-family:'IBM Plex Mono',monospace;white-space:nowrap;}
+  .ref-panel h4{margin:10px 0 4px;font-size:12.5px;}
+  .ref-note{color:var(--ink-soft);font-size:11px;margin-top:8px;line-height:1.5;}
+
+  .toast{
+    position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;
+    padding:10px 18px;border-radius:20px;font-size:12.5px;z-index:80;box-shadow:0 4px 14px rgba(0,0,0,.25);
+  }
+</style>
+</head>
+<body>
+<header class="app">
+  <div class="row1">
+    <button class="backbtn" id="backBtn" style="display:none;" onclick="goList()">‹ Okullar</button>
+    <div>
+      <h1 id="headerTitle">Saha Keşif — Data Ucu Hesap Aracı</h1>
+      <div class="sub" id="headerSub">Faz-4 Yerel Alan Ağı Teknik Şartnamesi · madde 6</div>
+    </div>
+  </div>
+</header>
+<main id="app"></main>
+
+<script>
+/* ================= VERİ MODELİ (Şartname madde 6, sayfa 9-11) ================= */
+
+// 20 temel mekân kategorisi
+const CATEGORIES = [
+  {key:'derslik', name:'Derslik', data:1, enerji:1, ap:0},
+  {key:'laboratuvar', name:'Laboratuvar', data:1, enerji:0, ap:0},
+  {key:'atolye', name:'Atölye', data:1, enerji:0, ap:0},
+  {key:'sanat', name:'Resim, Müzik, Sanat Odaları', data:1, enerji:0, ap:0},
+  {key:'mudur', name:'Müdür Odası', data:2, enerji:0, ap:0},
+  {key:'mudur_yrd', name:'Müdür Yardımcısı Odası', data:'p1', enerji:0, ap:0},
+  {key:'memur', name:'Memur Odaları', data:'p1', enerji:0, ap:0},
+  {key:'rehberlik', name:'Rehberlik Servisi Odası', data:'p1', enerji:0, ap:0},
+  {key:'calisma', name:'Çalışma Odası', data:1, enerji:0, ap:0},
+  {key:'etut', name:'Etüt Odası', data:1, enerji:0, ap:0},
+  {key:'ogretmenler', name:'Öğretmenler Odası', data:3, enerji:0, ap:1},
+  {key:'bt', name:'BT Sınıfı', data:1, enerji:0, ap:1},
+  {key:'kutuphane', name:'Z Kütüphane / Kütüphane (bilgisayar varsa)', data:1, enerji:0, ap:1},
+  {key:'konferans', name:'Konferans Salonu', data:1, enerji:0, ap:1},
+  {key:'toplanti', name:'Toplantı Odası', data:1, enerji:0, ap:1},
+  {key:'arsiv', name:'Arşiv (bilgisayar ve personel varsa)', data:1, enerji:0, ap:0},
+  {key:'ozel_egitim', name:'Özel Eğitim Hizmetleri Odası', data:1, enerji:0, ap:0},
+  {key:'zumre', name:'Zümre Odası', data:1, enerji:0, ap:0},
+  {key:'fotokopi', name:'Fotokopi Odası', data:1, enerji:0, ap:0},
+  {key:'oab', name:'Okul Aile Birliği Odası', data:1, enerji:0, ap:0},
+];
+
+// Sahada karşılaşılan 64 farklı oda adı -> karşılık geldiği kategori (madde 6.6 eki)
+// [isim, kategoriKey, dataOverride(varsa)]
+const ALIASES = [
+  ['Bilgisayar Dersliği','bt',2],['Bilgisayar Laboratuvarı','bt',2],
+  ['Uygulama Alanı','laboratuvar'],['Uygulama Odası','laboratuvar'],['Teknik Tasarım Odası','laboratuvar'],
+  ['Sanat Tasarım Odası','laboratuvar'],['Mesleki Teknoloji Alanı','laboratuvar'],['Yabancı Dil Odası','laboratuvar'],
+  ['Dyned Odası','laboratuvar'],['Deney Odası','laboratuvar'],['Fen Odası','laboratuvar'],
+  ['Aile Tüketici Hizmetleri Odası','atolye'],['Çocuk Gelişimi Odası','atolye'],['RTK Stüdyo','atolye'],
+  ['Radyo Odası','atolye'],['El Sanatları Odası','atolye'],['Temel İmalat Odası','atolye'],
+  ['Teknoloji Odası','atolye'],['Büro Yönetimi Odası','atolye'],
+  ['Teknoloji Tasarım Sınıfı','derslik'],['Halkeğitim Dersliği','derslik'],['Özel Eğitim Sınıfı','derslik'],
+  ['Engelli Eğitim Sınıfı','derslik'],['Özel Alt Sınıf','derslik'],['Özel Derslik','derslik'],['Özel Sınıf','derslik'],
+  ['Şube Müdürü Odası','memur'],['Milli Eğitim Şefi Odası','memur'],['Kalem Odası','memur'],['VHKİ Odası','memur'],
+  ['Büro','memur'],['Ofis','memur'],['ÖSYM Büro','memur'],['Mutemet Odası','memur'],['Taşınır İşlem Odası','memur'],
+  ['Döner Sermaye Odası','memur'],['Yazı İşleri Odası','memur'],
+  ['Görüşme Odası','rehberlik'],['Veli Görüşme Odası','rehberlik'],['Bireysel Görüşme Odası','rehberlik'],
+  ['Veli Odası','oab'],
+  ['Görsel Sanatlar Odası','sanat'],['Çizim Odası','sanat'],
+  ['Duyu Bütünleme Odası','ozel_egitim'],['ÖÇEM (Otistik Çocuklar Eğitim Merkezi)','ozel_egitim'],
+  ['Özel Eğitim Odası','ozel_egitim'],['Destek Odası','ozel_egitim'],
+  ['Komisyon Odası','toplanti'],
+  ['Teksir Odası','fotokopi'],
+  ['Kitaplık','kutuphane'],
+  ['Bilgisayar Bölüm Odası','zumre'],['Eğitmen Odası','zumre'],
+  ['Sözel Odası','calisma'],['Matematik Odası','calisma'],['Fizik Odası','calisma'],['Edebiyat Odası','calisma'],
+  ['Kurs Odaları','calisma'],['Bilgisayar Odası','calisma'],['Bilgisayar Çalışma Odası','calisma'],
+  ['Bilişim Odası','calisma'],['İnternet Odası','calisma'],['Etüt Salonu','calisma'],['Okuma Odası','calisma'],
+  ['Kültür Salonu','calisma'],
+];
+
+// Data ucu ÇEKİLMEYECEK alanlar listesi (madde 6.7 eki, 108 kalem)
+const EXCLUDED = [
+  'Elektrik Odası','Asit Odası','Oturma Odası','Pano Odası','Pozlama Odası','Arabuluculuk Odası',
+  'Saç Bakım Odası','Lobi, Hol, Salon','Dijital Baskı Odası','Akü Odası','Sunum Odası','Bilgisayar Format Odası',
+  'Zil Sistem Odası','Oyun Odası','Misafirhane','Oyun Alanı','İş Sağlığı Ve Güvenliği Odası','Misafir Odası',
+  'Simülatör Odası','Operatör Odası','Lazer Odası','Özel Bakım Odası','Yatak Odası','Öğrenci Odası',
+  'Pasif Oda','Yatakhane','Fotoğraf Stüdyosu','Bakım Odası','Ups Odası','Mobilya Atölyesi',
+  'Sosyal Alan','Strateji Odası','Veri Odası','Cilt Bakım Odası','Halk Oyunları Odası','Uzem Salonu',
+  'Hobi Odası','Koordinatör Odası','Giriş Kabul','Kalorifer Dairesi','Güvenlik Odası','Sorumlu Odası',
+  'Kaloriferci Odası','Bekçi Odası','Server Odası','Dinlenme Odası','Görevli Odası','Bilişim Servisi Odası',
+  'Dinlenme Alanı','Cihaz Odası','Prova Odası','Uyku Odası','Oturma Yeri','Gemicilik Odası',
+  'Sınav Merkezi','Müfettiş Odası','Çocuk Gelişimi Alanı','Sınav Salonu','Baskı Odası','Sendika Odası',
+  'Bireysel Oda','Atıl Depo','Servis Odası','Kostüm Odası','Pasif Depo','Stajyer Odası',
+  'Kooperatif Odası','Teknik Destek Odası','Formatör Odası','Kontrol Odası','Nöbetçi Öğrenci Odası','Genel Hizmet Odası',
+  'Kumanda Odası','Masaj Salonu','Ziyaretçi Odası','Arıza Odası','Berber','Protokol Odası',
+  'Teknik Servis Odası','Kuaför','Bilgi İşlem Odası','Elektrik Servis Odası','Öğrenci Meclisi','Boyahane',
+  'Otomasyon Odası','Arge Odası','Folklor Odası','Beden Eğitimi Salonu','Egzersiz Odası','İlkyardım Odası',
+  'Masa Tenisi Salonu','Disiplin Odası','Hasta Bakım Odası','Fitness Salonu','Ölçme Odası','Tiyatro Salonu',
+  'Spor Alanı','İzleme Odası','Drama Salonu','Beden Eğitimi Odası','Spor Kulübü','Beden Odası',
+  'Temrin Odası','Ölçü Aletleri Odası','Koridor','Danışma','Sistem Odası','Çok Amaçlı Salon',
+];
+
+const CAT_BY_KEY = {}; CATEGORIES.forEach(c=>CAT_BY_KEY[c.key]=c);
+
+// Tek bir arama kataloğu oluştur (kategori + takma ad + hariç liste)
+const CATALOG = [];
+CATEGORIES.forEach(c=>{
+  CATALOG.push({id:'c:'+c.key, label:c.name, sub:'Temel kategori', catKey:c.key, dataOverride:null, excluded:false});
+});
+ALIASES.forEach(([name,catKey,override])=>{
+  const c = CAT_BY_KEY[catKey];
+  CATALOG.push({id:'a:'+name, label:name, sub:'→ '+c.name, catKey:catKey, dataOverride: override || null, excluded:false});
+});
+EXCLUDED.forEach(name=>{
+  CATALOG.push({id:'x:'+name, label:name, sub:'Data ucu çekilmeyecek alan', catKey:null, dataOverride:null, excluded:true});
+});
+
+/* ================= DURUM & DEPOLAMA ================= */
+let SCHOOLS = {};       // {id: {id,name,createdAt,floors:[...]}}
+let CURRENT_ID = null;
+let VIEW = 'list';       // 'list' | 'detail'
+let PICKER_FOR = null;   // hangi kat için oda seçici açık {floorId}
+let PICKER_QUERY = '';
+
+const STORAGE_KEY = 'lan-survey-schools-v1';
+
+async function loadData(){
+  try{
+    const res = await window.storage.get(STORAGE_KEY, false);
+    if(res && res.value){ SCHOOLS = JSON.parse(res.value); }
+  }catch(e){ SCHOOLS = {}; }
+}
+async function saveData(){
+  try{ await window.storage.set(STORAGE_KEY, JSON.stringify(SCHOOLS), false); }
+  catch(e){ console.error('Kayıt hatası', e); }
+}
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+
+/* ================= HESAPLAMALAR ================= */
+function computeRoom(room){
+  let perData=0, enerji=0, ap=0, excluded=false, capped=false;
+  if(room.custom){
+    perData = Math.max(0, Math.min(room.customData||0, 5));
+    enerji = room.customEnerji?1:0;
+    ap = room.customAp?1:0;
+  } else {
+    const entry = CATALOG.find(e=>e.id===room.catalogId);
+    if(!entry) return {perData:0,enerji:0,ap:0,excluded:false,capped:false,dataTotal:0,enerjiTotal:0,apTotal:0};
+    if(entry.excluded){ excluded = true; }
+    else{
+      const cat = CAT_BY_KEY[entry.catKey];
+      if(entry.dataOverride!=null){ perData = entry.dataOverride; }
+      else if(cat.data==='p1'){
+        const raw = (room.personel||0)+1;
+        perData = Math.min(raw,5);
+        capped = raw>5;
+      } else { perData = cat.data; }
+      enerji = cat.enerji; ap = cat.ap;
+    }
+  }
+  const adet = room.adet||1;
+  return {perData, enerji, ap, excluded, capped, dataTotal:perData*adet, enerjiTotal:enerji*adet, apTotal:ap*adet};
+}
+function computeFloor(floor){
+  let data=0,enerji=0,ap=0,rooms=0;
+  floor.rooms.forEach(r=>{ const c=computeRoom(r); data+=c.dataTotal; enerji+=c.enerjiTotal; ap+=c.apTotal; rooms+=(r.adet||1); });
+  return {data,enerji,ap,rooms};
+}
+function computeSchool(school){
+  let data=0,enerji=0,ap=0,rooms=0;
+  (school.floors||[]).forEach(f=>{ const c=computeFloor(f); data+=c.data; enerji+=c.enerji; ap+=c.ap; rooms+=c.rooms; });
+  return {data,enerji,ap,rooms,floors:(school.floors||[]).length};
+}
+
+// Fatih Enerji Panosu tipi — madde 35.11.15-19: derslik priz sayısına (=enerji ucu) göre belirlenir.
+// Madde 35.11.8: 67 ve üzeri derslikte ikinci pano kurulur (ana pano Tip-3/4, ikinci pano Tip-1/2).
+function panoInfo(enerjiUcu){
+  if(enerjiUcu<=0) return {durum:'yok', mesaj:'Bu okulda enerji ucu (derslik prizi) girilmedi — Fatih Enerji Panosu gerekmiyor.'};
+  if(enerjiUcu<=18) return {durum:'tek', tip:1, limit:18};
+  if(enerjiUcu<=30) return {durum:'tek', tip:2, limit:30};
+  if(enerjiUcu<=48) return {durum:'tek', tip:3, limit:48};
+  if(enerjiUcu<=66) return {durum:'tek', tip:4, limit:66};
+  return {durum:'cift', anaTip:'3 veya 4', ikinciTip:'1 veya 2'};
+}
+
+// Kabinet — madde 7: şartname data ucu sayısına bağlı sayısal bir eşik VERMEZ.
+// Seçim; sistem odası uygunluğu, kablo mesafesi (90m) ve bina yapısına göre yapılır.
+const KABINET_KRITERLERI = [
+  {tip:'42U / 26U / 16U', kural:'Ayrı bir sistem odası planlanmalı (16U için okul idaresi kararıyla kapalı bir personel odası da kabul edilebilir).', madde:'madde 7.1'},
+  {tip:'42U / 26U / 16U', kural:'Okulda tek kabinet kullanılıyorsa, kabinet binanın orta noktasına yakın, dikey/yatay kat geçişine uygun sistem odasına yerleştirilir.', madde:'madde 7.2'},
+  {tip:'9U / 4U', kural:'Ayrı sistem odası şartı aranmaz; öğrenci erişiminin az olduğu bir alan veya personel odası yeterlidir.', madde:'madde 7.3'},
+  {tip:'9U / 4U', kural:'Etkileşimli tahtası olmayan, sadece data planlanan binalarda ayrı enerji panosu kurulmaz; besleme en yakın kat panosundan 16A sigorta ile sağlanır.', madde:'madde 7.3.1'},
+  {tip:'Tümü', kural:'Kabinetten çıkacak data kablolaması 90 metreyi aşarsa ikinci bir kabinet planlanır.', madde:'madde 7.4'},
+];
+
+/* ================= RENDER ================= */
+const app = document.getElementById('app');
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+function render(){
+  document.getElementById('backBtn').style.display = VIEW==='detail' ? 'flex':'none';
+  if(VIEW==='list'){
+    document.getElementById('headerTitle').textContent = 'Saha Keşif — Data Ucu Hesap Aracı';
+    document.getElementById('headerSub').textContent = 'Faz-4 Yerel Alan Ağı Teknik Şartnamesi · madde 6';
+    renderList();
+  } else {
+    const s = SCHOOLS[CURRENT_ID];
+    document.getElementById('headerTitle').textContent = s ? s.name : 'Okul';
+    document.getElementById('headerSub').textContent = 'Kat ve sınıf bazlı data ucu dökümü';
+    renderDetail();
+  }
+  if(PICKER_FOR){ renderPicker(); }
+}
+
+function renderList(){
+  const ids = Object.keys(SCHOOLS).sort((a,b)=> (SCHOOLS[b].createdAt||0)-(SCHOOLS[a].createdAt||0));
+  let html = '';
+  if(ids.length===0){
+    html += `<div class="empty-hint">Henüz kayıtlı okul yok.<br>Keşfe başlamak için aşağıdan yeni okul ekle.</div>`;
+  } else {
+    ids.forEach(id=>{
+      const s = SCHOOLS[id];
+      const t = computeSchool(s);
+      html += `<div class="school-card" onclick="openSchool('${id}')">
+        <div>
+          <div class="name">${esc(s.name)}</div>
+          <div class="meta">${t.floors} kat · ${t.rooms} oda · ${t.data} data ucu</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>`;
+    });
+  }
+  html += `<button class="newschool" onclick="createSchool()">+ Yeni Okul Ekle</button>`;
+  html += `<div class="ref-toggle" onclick="toggleRef()">${window.__refOpen?'Referans tabloyu gizle':'Şartname referans tablosunu göster'}</div>`;
+  if(window.__refOpen) html += renderRefPanel();
+  app.innerHTML = html;
+}
+
+function renderRefPanel(){
+  let rows = CATEGORIES.map(c=>{
+    const dtxt = c.data==='p1' ? 'Personel + 1' : c.data+' data ucu';
+    const extra = [];
+    if(c.enerji) extra.push('1 enerji ucu');
+    if(c.ap) extra.push('1 AP ucu');
+    return `<tr><td>${esc(c.name)}</td><td>${dtxt}${extra.length?' · '+extra.join(' · '):''}</td></tr>`;
+  }).join('');
+  return `<div class="ref-panel">
+    <h4>Standart mekân — data ucu tablosu</h4>
+    <table>${rows}</table>
+    <div class="ref-note">
+      • Bir odaya çekilecek data ucu hiçbir şekilde 5'i geçmez.<br>
+      • Enerji ucu yalnızca derslik (ve derslik sayılan, etkileşimli tahtası kurulu/kurulacak alanlar) için yapılır.<br>
+      • "P+1" = odayı kullanan, masası ve bilgisayarı olan personel sayısı + 1.<br>
+      • Oda ekle ekranındaki arama kutusuna sahada gördüğün ismi yazarsan (ör. "Kalem Odası", "Fen Odası") 64 kalemlik şartname eşleştirme listesinden otomatik kategori bulunur; data ucu çekilmeyecek 108 alan da listede uyarılı görünür.
+    </div>
+  </div>`;
+}
+window.toggleRef = function(){ window.__refOpen = !window.__refOpen; render(); };
+
+function renderSystemCard(t){
+  const open = !!window.__sysOpen;
+  const pano = panoInfo(t.enerji);
+  let panoHtml = '';
+  if(pano.durum==='yok'){
+    panoHtml = `<div class="sys-line">${pano.mesaj}</div>`;
+  } else if(pano.durum==='tek'){
+    panoHtml = `<div class="sys-result">
+        <span class="sys-tip">Tip-${pano.tip}</span>
+        <span class="sys-desc">Fatih Enerji Panosu</span>
+      </div>
+      <div class="sys-line">Okulda toplam <b>${t.enerji}</b> enerji ucu (derslik prizi) var. Tip-${pano.tip} pano en fazla <b>${pano.limit}</b> derslik prizi taşıyabilir — sınırın altındasın.</div>
+      <div class="sys-cite">Kaynak: madde 35.11.15–35.11.19</div>`;
+  } else {
+    panoHtml = `<div class="sys-result warn2">
+        <span class="sys-tip">2 Pano Gerekir</span>
+        <span class="sys-desc">Ana: Tip-${pano.anaTip} · İkinci: Tip-${pano.ikinciTip}</span>
+      </div>
+      <div class="sys-line">Okulda toplam <b>${t.enerji}</b> enerji ucu var, tek panonun taşıyabileceği en yüksek sınır olan 66'yı aşıyor. 67 ve üzeri derslikte ikinci bir pano kurulur; ana pano Tip-3 veya Tip-4, ikinci pano Tip-1 veya Tip-2 olur.</div>
+      <div class="sys-cite">Kaynak: madde 35.11.8, 35.11.15–35.11.19</div>`;
+  }
+
+  let kabinetHtml = `<div class="sys-line" style="margin-top:2px;">Şartname, kabinet büyüklüğünü (42U/26U/16U/9U/4U) doğrudan data ucu sayısına bağlayan sayısal bir eşik <b>vermiyor</b> — seçim aşağıdaki kriterlere göre yüklenici ve okul idaresinin ortak kararıyla yapılır:</div>
+    <ul class="sys-list">`;
+  KABINET_KRITERLERI.forEach(k=>{
+    kabinetHtml += `<li><b>${esc(k.tip)}:</b> ${esc(k.kural)} <span class="sys-cite">(${k.madde})</span></li>`;
+  });
+  kabinetHtml += `</ul><div class="sys-line" style="margin-top:6px;">Yönlendirici not: toplam <b>${t.data}</b> data ucu, sistem odasındaki patch panel/switch sayısını (dolayısıyla gereken U yüksekliğini) belirler — ne kadar çok data ucu ve bina/kat geçişi varsa o kadar büyük kabinet (26U/42U) gerekme ihtimali artar; tek bina, az odalı yerlerde 9U/4U yeterli olabilir. Bu genel bir eğilimdir, şartnamede sayısal karşılık yoktur.</div>`;
+
+  return `<div class="sys-card">
+    <div class="sys-head" onclick="toggleSys()">
+      <span>⚙ Kabinet & Pano Önerisi</span>
+      <span class="sys-chevron">${open?'▲':'▼'}</span>
+    </div>
+    ${open?`<div class="sys-body">
+      <h4>Enerji Panosu Tipi</h4>
+      ${panoHtml}
+      <h4 style="margin-top:14px;">Kabinet Büyüklüğü</h4>
+      ${kabinetHtml}
+    </div>`:''}
+  </div>`;
+}
+window.toggleSys = function(){ window.__sysOpen = !window.__sysOpen; render(); };
+
+function renderDetail(){
+  const s = SCHOOLS[CURRENT_ID];
+  if(!s){ VIEW='list'; render(); return; }
+  const t = computeSchool(s);
+  let html = `<input class="schoolname-edit" value="${esc(s.name)}" oninput="renameSchool(this.value)" placeholder="Okul adı">`;
+  html += `<div class="school-sub">Oluşturuldu: ${new Date(s.createdAt).toLocaleDateString('tr-TR')}</div>`;
+  html += `<div class="summary-bar">
+    <div class="cell"><span class="num mono">${t.floors}</span><span class="lbl">Kat</span></div>
+    <div class="cell"><span class="num mono">${t.rooms}</span><span class="lbl">Oda</span></div>
+    <div class="cell accent"><span class="num mono">${t.data}</span><span class="lbl">Data Ucu</span></div>
+    <div class="cell steel"><span class="num mono">${t.ap}</span><span class="lbl">AP Ucu</span></div>
+  </div>`;
+
+  html += renderSystemCard(t);
+
+  (s.floors||[]).forEach(floor=>{
+    const fc = computeFloor(floor);
+    html += `<div class="floor">
+      <div class="floor-head">
+        <input value="${esc(floor.name)}" oninput="renameFloor('${floor.id}',this.value)" placeholder="Kat adı">
+        <button class="floor-del" onclick="deleteFloor('${floor.id}')">✕</button>
+      </div>
+      <div class="floor-body">`;
+    if((floor.rooms||[]).length===0){
+      html += `<div style="font-size:12px;color:var(--ink-soft);padding:6px 2px 10px;">Bu kata henüz oda eklenmedi.</div>`;
+    }
+    (floor.rooms||[]).forEach(room=>{
+      html += renderRoomRow(floor.id, room);
+    });
+    html += `<button class="add-room-btn" onclick="openPicker('${floor.id}')">+ Oda Ekle</button>`;
+    html += `<div class="floor-summary">
+      <span>Oda: <b>${fc.rooms}</b></span>
+      <span>Data: <b>${fc.data}</b></span>
+      <span>Enerji: <b>${fc.enerji}</b></span>
+      <span>AP: <b>${fc.ap}</b></span>
+    </div>`;
+    html += `</div></div>`;
+  });
+
+  html += `<button class="add-floor-btn" onclick="addFloor()">+ Kat Ekle</button>`;
+  html += `<div class="bottom-actions">
+    <button class="action-btn copy" onclick="copySummary()">Özeti Kopyala</button>
+    <button class="action-btn del" onclick="deleteSchool()">Okulu Sil</button>
+  </div>`;
+  app.innerHTML = html;
+}
+
+function roomLabel(room){
+  if(room.custom) return {name:room.customName||'Manuel oda', cat:'Manuel giriş'};
+  const entry = CATALOG.find(e=>e.id===room.catalogId);
+  if(!entry) return {name:'Bilinmeyen', cat:''};
+  return {name:entry.label, cat:entry.excluded?'Data ucu çekilmeyecek alan':(entry.sub==='Temel kategori'?'':entry.sub)};
+}
+
+function renderRoomRow(floorId, room){
+  const c = computeRoom(room);
+  const lab = roomLabel(room);
+  const entry = room.custom? null : CATALOG.find(e=>e.id===room.catalogId);
+  const isP1 = entry && !room.custom && CAT_BY_KEY[entry.catKey] && CAT_BY_KEY[entry.catKey].data==='p1' && entry.dataOverride==null;
+
+  let badges = '';
+  if(c.excluded){ badges += `<span class="badge excl">çekilmez</span>`; }
+  else{
+    badges += `<span class="badge data">${c.dataTotal} data</span>`;
+    if(c.enerjiTotal>0) badges += `<span class="badge enerji">${c.enerjiTotal} enerji</span>`;
+    if(c.apTotal>0) badges += `<span class="badge ap">${c.apTotal} AP</span>`;
+  }
+
+  let controls = `<div class="room-controls">
+    <span class="stepper-label">Adet</span>
+    <div class="stepper">
+      <button onclick="changeAdet('${floorId}','${room.id}',-1)">−</button>
+      <span class="val mono">${room.adet||1}</span>
+      <button onclick="changeAdet('${floorId}','${room.id}',1)">+</button>
+    </div>`;
+  if(isP1 && !c.excluded){
+    controls += `<span class="stepper-label">Personel</span>
+    <div class="stepper">
+      <button onclick="changePersonel('${floorId}','${room.id}',-1)">−</button>
+      <span class="val mono">${room.personel||0}</span>
+      <button onclick="changePersonel('${floorId}','${room.id}',1)">+</button>
+    </div>`;
+  }
+  controls += `<div style="margin-left:auto;display:flex;gap:5px;">${badges}</div></div>`;
+  if(c.capped){ controls += `<div class="cap-warn">Personel sayısına göre hesap 5 sınırına düşürüldü</div>`; }
+  if(c.excluded){ controls += `<div class="cap-warn">Bu alana normalde data ucu çekilmez — gerekiyorsa merkezi kontrol teşkilatı onayı gerekir.</div>`; }
+
+  return `<div class="room-row">
+    <div class="top">
+      <div class="rlabel">
+        <div class="name">${esc(lab.name)}</div>
+        ${lab.cat?`<div class="cat">${esc(lab.cat)}</div>`:''}
+      </div>
+      <button class="room-del" onclick="deleteRoom('${floorId}','${room.id}')">✕</button>
+    </div>
+    ${controls}
+    <input class="note-input" placeholder="Oda adı / numarası (ör. 101, Zemin kat sol koridor)" value="${esc(room.note||'')}" oninput="setRoomNote('${floorId}','${room.id}',this.value)">
+  </div>`;
+}
+
+/* ---- Oda seçici (arama) ---- */
+function renderPicker(){
+  const q = PICKER_QUERY.trim().toLowerCase();
+  let results = CATALOG;
+  if(q){
+    results = CATALOG.filter(e=> e.label.toLowerCase().includes(q) || (e.sub&&e.sub.toLowerCase().includes(q)) );
+  }
+  results = results.slice(0,60);
+  let items = results.map(e=>{
+    let tags='';
+    if(e.excluded){ tags='<span class="badge excl">çekilmez</span>'; }
+    else{
+      const cat = CAT_BY_KEY[e.catKey];
+      const dtxt = e.dataOverride!=null? e.dataOverride : (cat.data==='p1'?'P+1':cat.data);
+      tags = `<span class="badge data">${dtxt}</span>`;
+      if(cat.ap) tags += `<span class="badge ap">AP</span>`;
+      if(cat.enerji) tags += `<span class="badge enerji">enerji</span>`;
+    }
+    return `<div class="picker-item ${e.excluded?'excluded':''}" onclick="pickCatalog('${e.id.replace(/'/g,"\\'")}')">
+      <div><div class="pname">${esc(e.label)}</div>${e.sub?`<div class="pcat">${esc(e.sub)}</div>`:''}</div>
+      <div class="ptags">${tags}</div>
+    </div>`;
+  }).join('');
+  if(results.length===0){
+    items = `<div class="picker-custom">"${esc(PICKER_QUERY)}" listede bulunamadı.<br>Şartnamede tanımsız alanlara data ucu çekilmez; ihtiyaç varsa merkezi kontrol teşkilatı onayı gerekir.<br>
+    <button onclick="pickCustom()">Yine de manuel oda olarak ekle</button></div>`;
+  }
+
+  const html = `<div class="picker-backdrop" onclick="closePickerIfBackdrop(event)">
+    <div class="picker">
+      <div class="picker-head">
+        <h3>Oda türü seç</h3>
+        <input autofocus placeholder="Sahada gördüğün oda adını yaz (ör. Fen Odası)" value="${esc(PICKER_QUERY)}" oninput="PICKER_QUERY=this.value; renderPickerOnly();">
+      </div>
+      <div class="picker-list" id="pickerList">${items}</div>
+      <div class="picker-close" onclick="closePicker()">Kapat</div>
+    </div>
+  </div>`;
+  let holder = document.getElementById('pickerHolder');
+  if(!holder){ holder = document.createElement('div'); holder.id='pickerHolder'; document.body.appendChild(holder); }
+  holder.innerHTML = html;
+  const inputEl = holder.querySelector('.picker-head input');
+  if(inputEl){ const pos=inputEl.value.length; inputEl.focus(); inputEl.setSelectionRange(pos,pos); }
+}
+function renderPickerOnly(){ renderPicker(); }
+window.closePickerIfBackdrop = function(ev){ if(ev.target.classList.contains('picker-backdrop')) closePicker(); };
+window.closePicker = function(){ PICKER_FOR=null; PICKER_QUERY=''; const h=document.getElementById('pickerHolder'); if(h) h.innerHTML=''; };
+
+/* ================= EYLEMLER ================= */
+window.createSchool = function(){
+  const id = uid();
+  SCHOOLS[id] = {id, name:'Yeni Okul', createdAt:Date.now(), floors:[]};
+  CURRENT_ID = id; VIEW='detail';
+  saveData(); render();
+};
+window.openSchool = function(id){ CURRENT_ID=id; VIEW='detail'; render(); };
+window.goList = function(){ VIEW='list'; CURRENT_ID=null; render(); };
+window.renameSchool = function(val){ SCHOOLS[CURRENT_ID].name = val; saveData(); };
+window.deleteSchool = function(){
+  if(!confirm('Bu okulu ve tüm kayıtlı verilerini silmek istediğine emin misin?')) return;
+  delete SCHOOLS[CURRENT_ID]; CURRENT_ID=null; VIEW='list'; saveData(); render();
+};
+window.addFloor = function(){
+  const s = SCHOOLS[CURRENT_ID];
+  const n = (s.floors||[]).length+1;
+  s.floors = s.floors||[];
+  s.floors.push({id:uid(), name:'Kat '+n, rooms:[]});
+  saveData(); render();
+};
+window.renameFloor = function(floorId,val){
+  const f = SCHOOLS[CURRENT_ID].floors.find(x=>x.id===floorId); if(f){ f.name=val; saveData(); }
+};
+window.deleteFloor = function(floorId){
+  const s = SCHOOLS[CURRENT_ID];
+  s.floors = s.floors.filter(f=>f.id!==floorId);
+  saveData(); render();
+};
+window.openPicker = function(floorId){ PICKER_FOR = floorId; PICKER_QUERY=''; render(); };
+window.pickCatalog = function(catalogId){
+  const f = SCHOOLS[CURRENT_ID].floors.find(x=>x.id===PICKER_FOR);
+  f.rooms.push({id:uid(), catalogId, adet:1, personel:0});
+  closePicker(); saveData(); render();
+};
+window.pickCustom = function(){
+  const f = SCHOOLS[CURRENT_ID].floors.find(x=>x.id===PICKER_FOR);
+  f.rooms.push({id:uid(), custom:true, customName:PICKER_QUERY||'Manuel oda', customData:1, customEnerji:false, customAp:false, adet:1});
+  closePicker(); saveData(); render();
+};
+window.deleteRoom = function(floorId, roomId){
+  const f = SCHOOLS[CURRENT_ID].floors.find(x=>x.id===floorId);
+  f.rooms = f.rooms.filter(r=>r.id!==roomId);
+  saveData(); render();
+};
+window.changeAdet = function(floorId, roomId, delta){
+  const f = SCHOOLS[CURRENT_ID].floors.find(x=>x.id===floorId);
+  const r = f.rooms.find(x=>x.id===roomId);
+  r.adet = Math.max(1, (r.adet||1)+delta);
+  saveData(); render();
+};
+window.changePersonel = function(floorId, roomId, delta){
+  const f = SCHOOLS[CURRENT_ID].floors.find(x=>x.id===floorId);
+  const r = f.rooms.find(x=>x.id===roomId);
+  r.personel = Math.max(0, (r.personel||0)+delta);
+  saveData(); render();
+};
+window.setRoomNote = function(floorId, roomId, val){
+  const f = SCHOOLS[CURRENT_ID].floors.find(x=>x.id===floorId);
+  const r = f.rooms.find(x=>x.id===roomId);
+  r.note = val; saveData();
+};
+
+function showToast(msg){
+  const t = document.createElement('div'); t.className='toast'; t.textContent=msg;
+  document.body.appendChild(t); setTimeout(()=>t.remove(),1800);
+}
+
+window.copySummary = function(){
+  const s = SCHOOLS[CURRENT_ID];
+  const t = computeSchool(s);
+  let lines = [];
+  lines.push(s.name);
+  lines.push('Toplam: '+t.floors+' kat, '+t.rooms+' oda, '+t.data+' data ucu, '+t.enerji+' enerji ucu, '+t.ap+' AP ucu');
+  const pano = panoInfo(t.enerji);
+  if(pano.durum==='tek') lines.push('Enerji Panosu: Tip-'+pano.tip+' (en fazla '+pano.limit+' derslik prizi)');
+  else if(pano.durum==='cift') lines.push('Enerji Panosu: 2 pano gerekir — Ana Tip-'+pano.anaTip+', İkinci Tip-'+pano.ikinciTip);
+  lines.push('');
+  (s.floors||[]).forEach(floor=>{
+    const fc = computeFloor(floor);
+    lines.push('— '+floor.name+' ('+fc.rooms+' oda, '+fc.data+' data, '+fc.enerji+' enerji, '+fc.ap+' AP)');
+    (floor.rooms||[]).forEach(room=>{
+      const c = computeRoom(room);
+      const lab = roomLabel(room);
+      const adet = room.adet||1;
+      let seg = '   '+lab.name+(room.note?' — '+room.note:'')+(adet>1?' x'+adet:'');
+      if(c.excluded){ seg += ' — data ucu çekilmez'; }
+      else{
+        seg += ' — '+c.dataTotal+' data';
+        if(c.enerjiTotal) seg += ', '+c.enerjiTotal+' enerji';
+        if(c.apTotal) seg += ', '+c.apTotal+' AP';
+      }
+      lines.push(seg);
+    });
+  });
+  const text = lines.join('\n');
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>showToast('Özet panoya kopyalandı')).catch(()=>showToast('Kopyalanamadı'));
+  } else { showToast('Kopyalama desteklenmiyor'); }
+};
+
+/* ================= BAŞLAT ================= */
+(async function init(){
+  app.innerHTML = `<div class="empty-hint">Yükleniyor…</div>`;
+  await loadData();
+  render();
+})();
+</script>
+</body>
+</html>
