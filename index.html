@@ -310,6 +310,24 @@ Vvj1R6DObAgAdRA+fDO4JyAznXfAThQIAnWQIo+hW+eZEoU9E9gBAJ6c3/ejhlFX08yr0ic4EADqKHlI
     padding:8px 11px;font-size:12px;font-weight:600;font-family:inherit;display:flex;align-items:center;gap:6px;
   }
   .installbtn:active{background:#9a4517;}
+
+  .installbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:60;
+    background:var(--ink);color:var(--paper);border-top:3px solid var(--copper);
+    padding:11px 14px;display:flex;align-items:center;gap:10px;
+    padding-bottom:calc(11px + env(safe-area-inset-bottom));
+  }
+  .installbar .txt{flex:1;font-size:12.5px;line-height:1.35;}
+  .installbar .txt b{color:#fff;}
+  .installbar button{
+    flex-shrink:0;background:var(--copper);color:#fff;border:none;border-radius:8px;
+    padding:10px 13px;font-size:12.5px;font-weight:600;font-family:inherit;white-space:nowrap;
+  }
+  .installbar button:active{background:#9a4517;}
+  .installbar .closex{
+    flex-shrink:0;background:transparent;border:none;color:#8a97a3;font-size:18px;padding:2px 4px;
+  }
+  body.has-installbar{padding-bottom:64px;}
   .install-modal-backdrop{
     position:fixed;inset:0;background:rgba(20,25,32,.55);z-index:90;display:flex;align-items:flex-end;justify-content:center;
   }
@@ -349,6 +367,12 @@ Vvj1R6DObAgAdRA+fDO4JyAznXfAThQIAnWQIo+hW+eZEoU9E9gBAJ6c3/ejhlFX08yr0ic4EADqKHlI
     <button class="installbtn" id="installBtn" onclick="handleInstallClick()">📲 Ana Ekrana Ekle</button>
   </div>
 </header>
+
+<div class="installbar" id="installBar" style="display:none;">
+  <div class="txt"><b>Bu aracı uygulama gibi kullan.</b><br>Telefonunun ana ekranına ekle, tarayıcı açmadan tek dokunuşla gir.</div>
+  <button onclick="handleInstallClick()">Ekle</button>
+  <button class="closex" onclick="dismissInstallBar()">✕</button>
+</div>
 <main id="app"></main>
 
 <script>
@@ -1183,10 +1207,28 @@ function showManualInstallModal(){
 window.closeInstallModalIfBackdrop = function(ev){ if(ev.target.classList.contains('install-modal-backdrop')) closeInstallModal(); };
 window.closeInstallModal = function(){ const h=document.getElementById('installModalHolder'); if(h) h.innerHTML=''; };
 
+const INSTALLBAR_DISMISS_KEY = 'sahaKesifInstallBarDismissed';
+
+window.dismissInstallBar = function(){
+  const bar = document.getElementById('installBar');
+  if(bar) bar.style.display = 'none';
+  document.body.classList.remove('has-installbar');
+  try{ localStorage.setItem(INSTALLBAR_DISMISS_KEY, '1'); }catch(e){}
+};
+
 function updateInstallBtnVisibility(){
   const btn = document.getElementById('installBtn');
-  if(!btn) return;
-  btn.style.display = isStandaloneMode() ? 'none' : 'flex';
+  const bar = document.getElementById('installBar');
+  const standalone = isStandaloneMode();
+  if(btn) btn.style.display = standalone ? 'none' : 'flex';
+
+  if(bar){
+    let dismissed = false;
+    try{ dismissed = localStorage.getItem(INSTALLBAR_DISMISS_KEY)==='1'; }catch(e){}
+    const show = !standalone && !dismissed;
+    bar.style.display = show ? 'flex' : 'none';
+    document.body.classList.toggle('has-installbar', show);
+  }
 }
 
 /* ================= BAŞLAT ================= */
