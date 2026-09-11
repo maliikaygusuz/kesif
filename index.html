@@ -1,3 +1,1170 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Saha Keşif — Data Ucu Hesap Aracı</title>
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIlNhaGEgS2XFn2lmIOKAlCBEYXRhIFVjdSBIZXNhcCBBcmFjxLEiLCAic2hvcnRfbmFtZSI6ICJTYWhhIEtlxZ9pZiIsICJzdGFydF91cmwiOiAiLiIsICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLCAiYmFja2dyb3VuZF9jb2xvciI6ICIjMWMyYjNhIiwgInRoZW1lX2NvbG9yIjogIiMxYzJiM2EiLCAiaWNvbnMiOiBbeyJzcmMiOiAiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFnQUFBQUlBQ0FZQUFBRDBlTlQ2QUFBVjNVbEVRVlI0bk8zZDNZMFQyUllHMEdKRUZqek1NNW9Ja0RvTVVrREVoRWlCMThtZ0pTSVlFUUZ4Y0IvdWVEQk51KzF5blorOXoxN3I2VXAzb0UrVkczOWY3VHBsdi9yNy9aOGJvZnlZdlFDQWpsN05YZ0QvOTNyMkFnb1M4RUJsMTk0REZZUkJGSUMraEQzQVBzKzlieW9GSFNnQWJRbDhnUGFldnJjcUJBMG9BTWNJZklEeEZJSUdGSUQ5aEQ1QUxPZnZ5OHJBalJTQTJ3aDlnQnlVZ1JzcEFDOFQvQUI1bmQ3REZZRm5LQUMvRS9vQWF6RVZlSVlDOEpQZ0IxaWZxY0MvRkFEQkQxQlIrU0pRdVFBSWZnREtGb0dLQlVEd0EvQlV1U0pRcVFBSWZnQ3VLVk1FS2hRQXdRL0FYc3NYZ1pVTGdPQUg0S2hsaThBZnN4ZlFpZkFIb0tYbGNtVzFDY0J5THhBQVlTdzFEVmlsQUFoK0FFWlpvZ2lzY0F0QStBTXdRK3I4eVY0QVVwOThBTkpMbTBOWmJ3R2tQZUVBTENmbExZR01Fd0RoRDBCRXFmSXBXd0ZJZFhJQktDZE5UbVc1QlpEbWhBSlFYb3BiQWhrbUFNSWZnSXhDNTFmMEFoRDY1QUhBRldGekxISUJDSHZTQUdDSGtIa1d0UUNFUEZrQWNLZHd1UmF4QUlRN1NRRFFRS2g4aS9RVVFLZ1RBd0FkaEhsQ0lNb0VRUGdEVU1uMDNJdFFBS2FmQkFDWVlHcit6UzRBd2grQXlxYmw0TXdDSVB3QllGSWV6cDRBQUFBVHpDb0FydjRCNEtmaHVUaWpBQWgvQVBqZDBId2NYUUNFUHdCY05pd25SeFlBNFE4QTF3M0p5MUVGUVBnRHdPMjY1K2FJQWlEOEFXQy9ydm5wTVVBQUtLaDNBWEQxRHdEMzY1YWpQUXVBOEFlQTQ3cmthYThDSVB3Qm9KM211V29QQUFBVTFLTUF1UG9IZ1BhYTVtdnJBaUQ4QWFDZlpqbmJzZ0FJZndEb3IwbmUyZ01BQUFXMUtnQ3UvZ0Znbk1PNWF3SUFBQVcxS0FDdS9nRmd2RVA1ZTdRQUNIOEFtT2Z1SEhZTEFBQUtPbElBWFAwRHdIeDM1YkVKQUFBVWRHOEJjUFVQQUhIc3ptVVRBQUFvNko0QzRPb2ZBT0xabGM4bUFBQlEwTjRDNE9vZkFPSzZPYWROQUFDZ29EMEZ3TlUvQU1SM1UxNmJBQUJBUWJjV0FGZi9BSkRIMWR4K1BXSVZ3SzgrZm50ejgzLzc2ZTMzamlzQnFycWxBTGo2aHdiMmhQNmxQNmNNQUR2ODJMYnQxYVgvMHdRQU9ybzM5Ry81KzVRQjRBZ0ZBRHBvSGZ3di9ReEZBTGpIdFUyQXh2K3cwNGp3bi9uemdGUXU1cmpIQUtHaFdXR3NCQUI3dlhRTHdOVS8zQ2hDQUxzbEFGenc3R1pBRXdBNEtFTDRuNHUySGlBbUJRQU9pQnEyVWRjRnhIR3BBQmovd3hYUlF6YjYrb0NoZnN0MUV3QUFLRWdCZ0R0a3Vick9zazVndk9jS2dQRS92Q0JicUdaYkw5RE5ML2x1QWdBN1pBM1RyT3NHK2xFQUFLQWdCUUJ1bFAwcU92djZnYmFlRmdEMy93RmdYZi9sdkFrQUFCU2tBTUFOVmhtZnIzSWN3SEVLQUFBVWRGNEEzUDhIZ1BYOTJEWVRBTGhxdGJINWFzY0QzRWNCQUlDQ0ZBQUFLRWdCQUlDQ1RnWEFCa0FBcU9PSENRQUFGS1FBQUVCQkNnQUFGS1FBQUVCQkNnQUFGS1FBQUVCQkNnQmM4ZW50OTlsTGFHcTE0d0h1ODhmbU13QUFvQndUQUFBb1NBR0FHNnd5TmwvbE9JRGpGQUFBS0VnQkFJQ0NGQUM0VWZieGVmYjFBMjBwQUFCUWtBSUFPMlM5aXM2NmJxQWZCUUIyeWhhbTJkWUxqS0VBd0IyeWhHcVdkUUxqS1FBQVVKQUNBSGVLZm5VZGZYM0FYQW9BSEJBMVpLT3VDNGhEQVlDRG9vVnR0UFVBTWIyZXZRQll3U2wwUDM1N00zME5BTGN3QVlDR1pvV3c4QWYyVWdDZ3NkRmhMUHlCZTdnRkFCMk11Q1VnK0lFakZBRG82RHlrVzVTQmZ4Ni8vUGUvSHorOE8vejNBWFVwQURESXZXWGdQUFFCV2xFQVlJTHpNdkR3K2V2RWxRQlYyUVFJQUFVcEFBQlFrRnNBeGV5NTkyeVhlV3dQbjcvYUNBamNUUUVvNE43ZDUrZC9UaGtBV0lzQ3NLald6NThyQS8wOGZuaG5JeUF3bkFLd21CR2ZSWC82R1lvQVFGNDJBUzVrOUJmUnpQemlHd0NPVVFBV01TdU1sUUNBbkJTQTVENStlek05aENPc29TcDdCNEI3S1FDSlJRdmRhT3NCNERJRklLbW9ZUnQxWGRGNW5oOFlUUUZJS0hySVJsOGZBQW9BQUpTa0FDU1Q1ZW82eXpvQnFsSUFFc2tXcXRuV201VW5BWUI3S0FCSlpBM1RyT3NHV0owQ0FFRjRFZ0FZU1FGSUlQdFZkUGIxQTZ4SUFRQ0FnaFFBV0lDTmdNQmVDa0J3cTR6UFZ6a09nRlVvQUJDSWpZREFLQW9BQUJTa0FBUzIydGg4dGVNQnlFd0JBSUNDRkFCWWhDY0JnRDBVQUFBb1NBR0FZRHdKQUl5Z0FBQkFRUW9BQUJTa0FBQkFRUW9BTE1TVEFNQ3RGQUFBS0VnQmdJQThDUUQwcGdBRTl1bnQ5OWxMYUdxMTR3SElUQUVBZ0lJVUFGaU1qWURBTFJTQTRGWVptNjl5SEFDclVBQWdLQnNCZ1o0VUFBQW9TQUZJSVB2NC9KL0hMN09YQU1BVENnQkQySmdHRUlzQ2tFVFdLY0Q1MWYvRDU2K0t3Q0RPTTNDTkFwQkl0aEp3YWZRdm5BRG1Vd0NTeVZJQ3J0MzNWd0p1NDBrQW9CY0ZnR21VQUlCNUZJQ0VvazhCOXV6NlZ3SUE1bEFBa29wYUF1NTU1RThKNk1ONUJWNmlBQ1FXclFRY2VkN2ZFd0lBWXlrQXlYMTYrMzE2RWZqbjhVdXpEL3RSQW41bkl5RFFnd0t3aUZrbG9NZW4vQ2tCQVAwcEFBc1pYUUkrdmYzZTdlcFVDUURvNi9Yc0JkRFdxUVI4L1BhbSs4ODRPWldBMXFIOThQbXI4VGNrdE9mOVovWXR6TXBlL2YzK3p4K3pGMEZmTGNyQXJmOUllMTI1Vnk4Q1I4NXI5WFBIR0NQZloyaERBU2htUkROWEF0cFRBSWhvNUtTUjloUUF1bEFDMnJ2M25GWStaL1RSTS9pZlV
+nVDZzUW1RTG13T2hEV05EUDhaUDY4U0JZQnVsQUJZeTZ3d1ZnTDY4QlFBWGZWOFF1RDg3d2Y2aVJEQXB6VzRKZENPQ1FCRG1BYk00eHh4UklUd1B4ZHRQWmtwQUF5akJFQXVVY00yNnJxeVVRQVlTZ200bjlzZGpCUTlaS092THdNRmdPR1VBSUQ1RkFDbWVQendya3NSVUFMZ3VDeFgxMW5XR1pVQ3dGUzlTb0FpOEN2bmcxdGxDOVZzNjQxRUFXQTZ0d1FnaHF4aG1uWGRzeWtBaEtBRTNNWkdRS0FWQllBd2xBQ1lKL3RWZFBiMXo2QUFFSXJOZ1FCaktBQ0VaSE1nUUY4S0FHRzVKZEJXMWVQbXVsWEc1NnNjeHlnS0FLRXBBUUI5S0FDRXB3VDh5cE1BUUFzS0FDa29BZERIYW1QejFZNm5Kd1dBTkhvK0lhQUlBTlVvQUtSakduQy9Dc2NJM0VZQklDVWxBT0FZQllDMEtwY0FHd0dCb3hRQVVxdGNBZ0NPVUFCSXo4Y0hBK3luQUxBTVR3Z0EzRTRCWUNsdUNWeTMwckVBOTFNQVdJNFNBQzg3VGJiOFR0ZW1BTENrQ2lYQWt3RHNJZlI1NnZYc0JVQXZwNEJzL1liMzhQbXI4Q1dGVzM3My8zbjhzdjMxOEg3QWFzYjQ5UGI3N0NXa1lRTEE4bXdPcEJxL245eENBYUNFQ3JjRXFNMkluNzFlL2YzK3p4K3pGd0dqOUhwem5IVkw0TWp4dUkyUlg4dmY1eFZ1QXhqLzcyTUNRQ2ttQVdUblNwOVdUQUFvYWFWSndFckh3bVc5QTk4RW9CNEZnTkpXQ00rUlY0Skt3Vmlqci9Jemx3RGh2NS9IQUNudDhjTzdMbSt5cXo0cWVINnVWankrQ0l6MkdjVUVBTGFjazRCSVFhRU1IQmZsOWN3NEJYRDFmeDhGQVA2VnBRUkVDWXJuS0FMN1JIMHRNNVVBNFg4L0JRRE9SQzRCVWNQaU9ZckFaUmxleDhjUDc3YVAzOTdNWHNaVnd2OFlCUUNlMGVOTit0NVF6QkFZbHlnQy81ZmhOWHo2V2lrQTYxTUE0SUxaMDRBTW9YR3Jxa1VnK210NDdYV0pYQUtFLzNFS0FMeGdWZ21JSGh6M3FGSUNvcjkyZTErSGlDVkErTGVoQU1BVm8wdEE5QUE1WXRVU2tPRTFPM0x1STVVQTRkK09BZ0EzR0ZFQ01vUklLNnNVZ2VpdldldnpQTE1JQ1A3MkZBRFlvZGZtd09oQjBrUFdFaEQ5dGVwOVhtZVVBT0hmaHdJQU8wVVBnRXl5bElEb3Ivbm84eml5QkFqL2ZoUUF1RVAwUU1na2Fnbkk4QnJQUG5jOWk0RGc3MDhCZ0R0bENJZ3NaZ2ZadWVpdmE2UnpkYTVGR1JENll5a0FjRUQwc01oa1pyQkZmeDJqaHY0bGU4cUEwSjlIQVlDRG9vZEhKcXQramZLOXNnVS91U2dBMEVpR1FNbWdkK2hGZjUyRVBxTzhucjBBV0VYVngva3lpUDY2Q0gxbU1BR0F4cUtIVFFZVnZqMVI2RE9iQWdBZFJBK2ZETzRKeUF6blhmQVRoUUlBbldRSW8raFcrZVpFb1U5RTlnQkFKNmMzL2VqaGxGWDA4eXIwaWM0RUFEcUtIbElaWlB2Q0pNRlBGaVlBUUhqUmcxL29rNUVKQUhRU1BiUTRSdWlUblFrQXdJMkVQaXRSQUtBRFYvOXJFZnlzU0FFQWVJYlFaM1VLQURUbTZqOHZvVThsQ2dCUW51Q25JZ1VBS0Vub1U1MENBQTBaLzhjbTlPRW5CUUJZbXRDSDV5a0F3SklFUDd4TUFZQkdqUC9uRS9wd093VUFTRTNvdzMwVUFDQWx3US9IL0RGN0FRQjdDWDg0VGdFQWdJSVVBR2pBQnNDeG5HODRUZ0VBZ0lJVUFBQW9TQUVBZ0lJVUFBQW9TQUVBZ0lJVUFBQW9TQUVBZ0lJVUFBQW9TQUVBZ0lJVUFBQW9TQUVBZ0lJVUFBQW9TQUdBQm53OTdWak9OeHluQUFCQVFRb0FBQlNrQUFCQVFRb0FBQlNrQUVBak5xYU40VHhER3dvQUFCU2tBQUJBUVFvQU5HUTgzWmZ6Qyswb0FBQlFrQUlBQUFVcEFOQ1lNWFVmeml1MHBRQUFRRUVLQUhUZ2FyVXQ1eFBhVXdBQW9DQUZBRHB4MWRxRzh3aDlLQUFBVUpBQ0FCMjVlajNHK1lOK0ZBRG82T0h6MTlsTEFIaVdBZ0NkQ1A5alhQMURYd29BZENEOGp4SCswTi9yMlF1QWxRais0NFEvakdFQ0FJMElmeUFUQlFBYUVQNXR1UHFIY1JRQU9FajR0eUg4WVN3RkFBNFEvbTBJZnhqUEprQzRnK0J2Ui9qREhDWUFzSlB3YjBmNHd6d0tBT3pRSS95cmhtRFY0NFlvRkFDNFVjL3dyeGFHMVk0WElsSUE0QVlqcnZ3ZlA3d1RqTUF3ci81Ky8rZVAyWXVBcUdhTi9DdnNNMUIyWUM0VEFMaGc1djErNFFqMFpnSUF6NGkwMlcvbGFZQ2lBL09ZQU1BVGtjTC85R2NGSmRDYUNRQ2NpUmIrejFsdElxRGN3QndLQUd3NWd2K3BsWXFBRWdEaitTaGd5c3NZL2s5L3hvd3lNUHZuQThlWUFGQmExdkIvU2M4d2Z1bllqdjdjMmVjTnFqRUJvS3dWdy8vU0d1NDUxZ2pIQXZSakFrQkpxNGIvYktZQWtJY0pBT1cwRG4raEJXUmtBa0FacnZySE1BV0FISHdRRUNVSS8zR09uaGRQRk1BWUNnRExFLzRBdjFNQVdKcnduOE1VQU9LekNaQmwyZXdIY0psTmdDekhWWDhjTmdSQ1hHNEJzQlRoRDNBYkJZQmxDUDk0N0FXQXVCUUFsaUQ4NDFJQ0lDYWJBRW5QWmorQS9Xd0NKQzFYL2JuWUVBaXh1QVZBU3NJZjRCZ0ZnSFNFZjA3MkFrQXNDZ0NwQ1AvYWxBQm9Sd0VnRGVHZm4vTU5jZGdFU0hpQ2Z6MDJCTUo4SmdDRUp2d0IrbEFBQ0V2NHI4dUdRSmhQQVNBazRRL1Fsd0pBT01LL0JsTUFtTXNtUU1JUS9EWFpFQWh6bUFBUWd2QUhHRXNCWURyaFg1dGJBVENIQXNCVXdoOWdEZ1dBYVlRL0o2WUFNTjdyMlF1Z0hzRVBNSjhKQUVNSmZ5NHhCWUN4RkFDR0VmNWNvd1RBT0FvQVF3aC9nRmdVQUxvVC91eGhDZ0JqMkFSSU40SWZJQzRmQlZ6TXgyOXZidjV2UDczOWZ2ZlBFZjRjNVNPQ29TOFRnQUwyaFA2bFA3ZW5EQWgvSW5qNC9OWHZEYnhBQVZqVXZhRi95OS8zVWhrUS9yVHkrT0dkKy9uUWtWc0FpMmtkL0M5NVdnU0VQejI0RlFCOW1BQXNaR1Q0bjM3ZXA3ZmZCVDlBUWg0RFhNVG84Ty81YzRVLzV6d1dDSDJZQUNRM0svalAvZlh3ZnR1MmJmdm44Y3ZodjB2NEE0eGhBcEJZaFBBL2R5b0M5eEwrWEdJS0FPMHBBRWxGQy8rVGUwdUE4T2NhSlFEYWNnc2dvYWpoZi9MWHcvdWJid2NJZm9BNVRBQ1lSdml6bHlrQXRLTUFKQlA5NnYvazJxMEE0UTh3bHdLUVNKYndQN2xVQW9RL1I1Z0NRQnNLUUJMWnd2L2thUWtRL2dBeEtBQU04ZmpobmZDbkdWTUFPRTRCU0NEcjFmL0owYzhIZ09jb0FYQ01BZ0F
+BQlNrQVFGcW1BSEEvQlNDNDdPUC9rMVdPQTJBVkNnQ1FtaWtBM0VjQkFJQ0NGSURBVmh1YnIzWTh4R0VLQVBzcEFNQVNsQURZUndFQWdJSVVBR0FacGdCd093VUFBQXBTQUlDbG1BTEFiUlFBZ0NlVUFDcFFBSURsK09aSnVFNEJBSmJrVmdDOFRBRUFnSUlVQUdCWnBnQndtUUlRMktlMzMyY3ZvYW5WamdjZ013VUFXSm9wQUR4UEFRQ1dwd1RBN3hTQTRGWVptNjl5SEFDcmVEMTdBUUFqUEg1NGQraEsvdUh6MSszeHc3dGRYMnV0K0JLWkFnQnd4VjhQNy8vOVg3ZUgvN1p0djVRRlpZQm9YdjM5L3M4ZnN4ZkJkWHV1T3FMeHhrY2t0MDRCZm9aK2UvNU5FSUVKQU1DWm5zRi9jaXIwaWdBejJRU1lSTlkzaXF6clpsMHZQUkV3SXZ6UFpaN3NrWjhDa0VpMk1NMjJYdXA0cmdTTUR2OFRKWUJaM0FKSTV0UGI3eW5lTUlRL1djd0svbk51Q1RDRENRQlEwdU9IZHlIQy8xeUdjczg2RklDRW9sOGxSRjhmYkZ2Y3NJMjZMdGFqQUNRVk5XU2pyZ3ZPUlEvWjZPdGpEUXBBWXRIQ050cDZBTGpNQndFdFl1WVZnK0FuazB4WDEvNXQwWk1Kd0NKbXZWRjRneUtUVE9HL2JmbldTeTRLd0VKR2g3SHdKNU9zWVpwMTNjVG5jd0FXY3dybG5tOGFnaDhnUDNzQUNtaFJCb1ErbWExd0ZlM2ZJSzJaQUJSdy9zYmh1OHdCMkRZRm9CeWhEc0MyMlFRSUxHNkY4ZisyclhNY3hLRUFBRUJCQ2dBQUZLUUFBTXRhYld5KzJ2RXdsd0lBQUFVcEFBQlFrQUlBQUFVcEFBQlFrQUlBQUFVcEFBQlFrQUlBQUFVcEFBQlFrQUlBQUFVcEFBQlFrQUlBTEd1MXI3OWU3WGlZU3dFQWdJSVVBQUFvU0FFQWxyYksySHlWNHlBT0JRQUFDbElBQUtBZ0JRQllYdmJ4ZWZiMUU1TUNBQUFGS1FCQUNWbXZvck91bS9qKzJMYnQxZXhGQUl5UUxVeXpyWmRjVEFDQVVyS0VhcFoxa3BjQ0FBQUZLUUJBT2RHdnJxT3ZqelVvQUVCSlVVTTI2cnBZandJQWxCVXRiS090aDdXOW5yMEFnSmxPb2Z2eDI1dnBhNENSVEFBQXRua2hMUHlaNVZRQWZCWUFVTjdvTUJiK1RQVEtMUUNBTXlOdUNRaCtJbEFBQUo1eEh0SXR5b0RRSnhvRkFPQ0tlOHVBMENjeUJRQmdCNkhPS3M2ZkFyQVJFQURXOTJyYlBBWUlBQ1VwQUFCUWtBSUFBQVU5TFFEMkFRREF1djdMZVJNQUFDaElBUUNBZ2hRQUFDam91UUpnSHdBQXJPZVhmRGNCQUlDQ0ZBQUFLT2hTQVhBYkFBRFc4VnV1bXdBQVFFRUtBQUFVOUZJQmNCc0FBUEo3TnM5TkFBQ2dvR3NGd0JRQUFQSzZtT01tQUFCUWtBSUFBQVhkVWdEY0JnQ0FmRjdNYnhNQUFDam8xZ0pnQ2dBQWVWek5iUk1BQUNob1R3RXdCUUNBK0c3S2F4TUFBQ2hvYndFd0JRQ0F1RzdPYVJNQUFDam9uZ0pnQ2dBQThlektaeE1BQUNqbzNnSmdDZ0FBY2V6T1pSTUFBQ2pvU0FFd0JRQ0ErZTdLWXhNQUFDam9hQUV3QlFDQWVlN080UllUQUNVQUFNWTdsTDl1QVFCQVFhMEtnQ2tBQUl4ek9IZE5BQUNnb0pZRndCUUFBUHBya3JldEp3QktBQUQwMHl4bmU5d0NVQUlBb0wybStXb1BBQUFVMUtzQW1BSUFRRHZOYzdYbkJFQUpBSURqdXVScDcxc0FTZ0FBM0s5Ymp0b0RBQUFGalNnQXBnQUFzRi9YL0J3MUFWQUNBT0IyM1hOejVDMEFKUUFBcmh1U2w2UDNBQ2dCQUhEWnNKeWNzUWxRQ1FDQTN3M054MWxQQVNnQkFQRFQ4RnowR0NBQUZEU3pBSmdDQU1Da1BKdzlBVkFDQUtoc1dnN09MZ0RicGdRQVVOUFUvSXRRQUxaTkNRQ2dsdW01OTNyMkFzNmNUc2FQcWFzQWdINm1CLzlKbEFuQXVUQW5Cd0FhQ3BWdkVRdkF0Z1U3U1FCd1VMaGNpMW9BdGkzZ3lRS0FPNFRNczhnRllOdUNualFBdUZIWUhJdGVBTFl0OE1rRGdCZUV6cTlJVHdHOHhCTUNBR1FST3ZoUE1rd0F6cVU0cVFDVWxTYW5zaFdBYlV0MGNnRW9KVlUrWmJrRjhKUmJBZ0JFa1NyNFR6Sk9BTTZsUE9rQUxDTnREbVV2QU51VytPUURrRnJxL01sNkMrQXB0d1FBR0NWMThKK3NVZ0JPRkFFQWVsa2krRTlXdUFYd25LVmVKQUNtV3k1WFZwc0FuRE1OQU9DbzVZTC9aT1VDY0tJSUFMRFhzc0YvVXFFQW5DZ0NBRnl6ZlBDZlZDb0FKNG9BQUUrVkNmNlRpZ1hnUkJFQW9GenduMVF1QUNlS0FFQTlaWVAvUkFINFNSRUFXRi81NEQ5UkFINTMvc3VoREFEa0ovU2ZvUUM4ekZRQUlDL0Ivd0lGNERhbUFnQTVDUDBiS1FEN0tRTUFzUWo5T3lnQXh6ejlwVk1JQVBvVCtBMG9BRzBwQkFEdENmd09GSUMrbnZ1bFZRb0FMaFAyZy93UCtpcy8yZ1Z1Wk1FQUFBQUFTVVZPUks1Q1lJST0iLCAic2l6ZXMiOiAiNTEyeDUxMiIsICJ0eXBlIjogImltYWdlL3BuZyIsICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSJ9XX0=">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" href="data:image/png;base64,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">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Saha Keşif">
+<meta name="theme-color" content="#1c2b3a">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2b3a;
+    --ink-soft:#3d5164;
+    --paper:#f1efe6;
+    --card:#faf9f4;
+    --line:#cdc6b4;
+    --line-soft:#e3ddcb;
+    --copper:#b5541f;
+    --copper-soft:#f0ddce;
+    --steel:#2f5d84;
+    --steel-soft:#dbe6ee;
+    --warn:#8a4b12;
+    --warn-bg:#f7e6d2;
+    --danger:#a13a3a;
+    --danger-bg:#f5dede;
+    --ok:#3f6b4c;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      linear-gradient(var(--paper),var(--paper)),
+      repeating-linear-gradient(0deg, rgba(28,43,58,0.035) 0px, rgba(28,43,58,0.035) 1px, transparent 1px, transparent 28px),
+      repeating-linear-gradient(90deg, rgba(28,43,58,0.035) 0px, rgba(28,43,58,0.035) 1px, transparent 1px, transparent 28px);
+    color:var(--ink);
+    font-family:'Space Grotesk',sans-serif;
+    min-height:100vh;
+    padding-bottom:40px;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  header.app{
+    background:var(--ink);
+    color:var(--paper);
+    padding:16px 16px 14px;
+    position:sticky;
+    top:0;
+    z-index:20;
+    border-bottom:3px solid var(--copper);
+  }
+  header.app .row1{display:flex;align-items:center;gap:10px;}
+  header.app h1{font-size:17px;margin:0;font-weight:600;letter-spacing:.2px;}
+  header.app .sub{font-size:11.5px;color:#b9c4cd;margin-top:3px;font-family:'IBM Plex Mono',monospace;}
+  .backbtn{
+    background:transparent;border:1.5px solid #56697a;color:var(--paper);
+    border-radius:7px;padding:6px 10px;font-size:13px;font-family:inherit;
+    display:flex;align-items:center;gap:5px;flex-shrink:0;
+  }
+  .backbtn:active{background:#2a3c4e;}
+  main{max-width:640px;margin:0 auto;padding:14px 12px 8px;}
+
+  /* ---- Okul listesi ---- */
+  .school-card{
+    background:var(--card);border:1.5px solid var(--line);border-radius:10px;
+    padding:14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:10px;
+  }
+  .school-card .name{font-weight:600;font-size:15.5px;}
+  .school-card .meta{font-size:11.5px;color:var(--ink-soft);margin-top:4px;font-family:'IBM Plex Mono',monospace;}
+  .school-card .arrow{color:var(--copper);font-size:20px;flex-shrink:0;}
+  .newschool{
+    background:var(--copper);color:#fff;border:none;border-radius:10px;
+    padding:14px;width:100%;font-size:15px;font-weight:600;font-family:inherit;
+    display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px;
+  }
+  .newschool:active{background:#9a4517;}
+  .databtn-row{display:flex;gap:8px;margin-top:8px;}
+  .databtn{
+    flex:1;background:var(--card);color:var(--ink-soft);border:1.5px solid var(--line);border-radius:10px;
+    padding:11px 8px;font-size:12.5px;font-weight:600;font-family:inherit;
+    display:flex;align-items:center;justify-content:center;gap:6px;
+  }
+  .databtn:active{background:var(--line-soft);}
+  .empty-hint{
+    text-align:center;color:var(--ink-soft);font-size:13.5px;padding:36px 20px;
+    border:1.5px dashed var(--line);border-radius:10px;margin-bottom:12px;
+  }
+
+  /* ---- Özet çubuğu ---- */
+  .summary-bar{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);border:1.5px solid var(--line);border-radius:10px;overflow:hidden;
+    margin-bottom:14px;position:sticky;top:74px;z-index:15;
+  }
+  .summary-bar .cell{background:var(--ink);color:var(--paper);padding:9px 6px;text-align:center;}
+  .summary-bar .cell .num{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;display:block;}
+  .summary-bar .cell .lbl{font-size:9.5px;color:#a9b7c2;text-transform:uppercase;letter-spacing:.4px;margin-top:2px;display:block;}
+  .summary-bar .cell.accent{background:var(--copper);}
+  .summary-bar .cell.accent .lbl{color:#f3d9c9;}
+  .summary-bar .cell.steel{background:var(--steel);}
+  .summary-bar .cell.steel .lbl{color:#cfe0ec;}
+
+  .sys-card{
+    background:var(--card);border:1.5px solid var(--copper);border-radius:10px;margin-bottom:14px;overflow:hidden;
+  }
+  .sys-head{
+    display:flex;justify-content:space-between;align-items:center;padding:11px 13px;background:var(--copper-soft);
+    font-weight:600;font-size:13.5px;color:var(--copper);cursor:pointer;
+  }
+  .sys-body{padding:12px 13px 14px;}
+  .sys-body h4{margin:0 0 6px;font-size:12.5px;color:var(--ink);}
+  .sys-result{
+    display:flex;align-items:baseline;gap:10px;background:#fff;border:1.5px solid var(--line-soft);
+    border-radius:8px;padding:9px 11px;margin-bottom:6px;
+  }
+  .sys-result.warn2{border-color:var(--warn);background:var(--warn-bg);}
+  .sys-tip{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:15px;color:var(--copper);}
+  .sys-result.warn2 .sys-tip{color:var(--warn);}
+  .sys-desc{font-size:11.5px;color:var(--ink-soft);}
+  .sys-line{font-size:12px;color:var(--ink-soft);line-height:1.5;margin-bottom:4px;}
+  .sys-cite{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a8264;display:block;margin-top:2px;}
+  .sys-list{margin:6px 0 0;padding-left:18px;}
+  .sys-list li{font-size:12px;color:var(--ink-soft);line-height:1.5;margin-bottom:7px;}
+  .sys-list li b{color:var(--ink);}
+
+  .schoolname-edit{
+    width:100%;font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;
+    border:none;border-bottom:2px solid var(--line);background:transparent;color:var(--ink);
+    padding:4px 2px 8px;margin-bottom:2px;
+  }
+  .schoolname-edit:focus{outline:none;border-color:var(--copper);}
+  .school-sub{font-size:11.5px;color:var(--ink-soft);margin:0 2px 14px;font-family:'IBM Plex Mono',monospace;}
+
+  /* ---- Kat kartı ---- */
+  .floor{
+    background:var(--card);border:1.5px solid var(--line);border-radius:10px;
+    margin-bottom:12px;overflow:hidden;
+  }
+  .floor-head{
+    display:flex;align-items:center;gap:6px;padding:11px 12px;background:#eeead9;
+    border-bottom:1.5px solid var(--line);
+  }
+  .floor-title{flex:1;display:flex;align-items:center;gap:8px;cursor:pointer;min-width:0;}
+  .floor-chevron{font-size:10px;color:var(--ink-soft);flex-shrink:0;width:12px;text-align:center;transition:transform .15s;}
+  .floor-name{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px;color:var(--ink);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .floor-edit{background:none;border:none;color:var(--ink-soft);font-size:14px;padding:2px 5px;flex-shrink:0;}
+  .floor-del{
+    background:none;border:none;color:var(--danger);font-size:18px;padding:2px 4px;flex-shrink:0;
+  }
+  .floor-body{padding:10px 10px 12px;}
+  .room-row{
+    border:1.5px solid var(--line-soft);border-radius:8px;padding:9px 10px;margin-bottom:8px;background:#fff;
+  }
+  .room-row .top{display:flex;gap:8px;align-items:flex-start;}
+  .room-row .rlabel{flex:1;min-width:0;}
+  .room-row .rlabel .name{font-size:13.5px;font-weight:600;line-height:1.3;}
+  .room-row .rlabel .cat{font-size:11px;color:var(--ink-soft);margin-top:1px;}
+  .room-del{background:none;border:none;color:var(--danger);font-size:17px;padding:0 2px;flex-shrink:0;}
+  .room-controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;align-items:center;}
+  .stepper{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:7px;overflow:hidden;}
+  .stepper button{width:28px;height:28px;background:#f2f0e6;border:none;font-size:15px;color:var(--ink);font-family:monospace;}
+  .stepper button:active{background:var(--line-soft);}
+  .stepper .val{width:30px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:13.5px;}
+  .stepper-label{font-size:10.5px;color:var(--ink-soft);margin-right:2px;}
+  .badge{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;padding:3px 7px;border-radius:5px;
+    white-space:nowrap;
+  }
+  .badge.data{background:var(--copper-soft);color:var(--copper);}
+  .badge.enerji{background:#e9e3d0;color:#6b5a2e;}
+  .badge.ap{background:var(--steel-soft);color:var(--steel);}
+  .badge.excl{background:var(--danger-bg);color:var(--danger);}
+  .cap-warn{font-size:10.5px;color:var(--warn);margin-top:5px;background:var(--warn-bg);padding:3px 7px;border-radius:5px;display:inline-block;}
+  .note-input{
+    width:100%;border:none;border-top:1px dashed var(--line-soft);margin-top:8px;padding-top:6px;
+    font-size:11.5px;font-family:inherit;color:var(--ink-soft);background:transparent;
+  }
+  .note-input:focus{outline:none;}
+  .floor-summary{
+    display:flex;gap:14px;flex-wrap:wrap;padding:8px 12px 10px;font-size:11.5px;color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace;border-top:1px dashed var(--line-soft);
+  }
+  .floor-summary b{color:var(--ink);}
+
+  .add-room-btn, .add-floor-btn{
+    width:100%;border:1.5px dashed var(--copper);color:var(--copper);background:transparent;
+    border-radius:8px;padding:10px;font-size:13.5px;font-weight:600;font-family:inherit;
+    display:flex;align-items:center;justify-content:center;gap:6px;
+  }
+  .add-room-btn:active,.add-floor-btn:active{background:var(--copper-soft);}
+  .add-floor-btn{margin-bottom:14px;}
+
+  /* ---- Resmi Altyapı Formu (bina bilgileri) ---- */
+  .form-card{
+    background:var(--card);border:1.5px solid var(--steel);border-radius:10px;margin-bottom:14px;overflow:hidden;
+  }
+  .form-head{
+    display:flex;justify-content:space-between;align-items:center;padding:11px 13px;background:var(--steel-soft);
+    font-weight:600;font-size:13.5px;color:var(--steel);cursor:pointer;
+  }
+  .form-body{padding:12px 12px 4px;}
+  .form-intro{font-size:11.5px;color:var(--ink-soft);line-height:1.5;margin:0 0 12px;}
+  .building-block{
+    border:1.5px solid var(--line-soft);border-radius:9px;padding:11px 11px 4px;margin-bottom:12px;background:#fff;
+  }
+  .building-block-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+  .building-block-head b{font-size:13px;color:var(--ink);}
+  .building-block-head button{background:none;border:none;color:var(--danger);font-size:16px;padding:0 3px;}
+  .field-row{display:flex;flex-direction:column;gap:3px;margin-bottom:9px;}
+  .field-row label{font-size:11px;color:var(--ink-soft);font-weight:600;}
+  .field-row label .hint{font-weight:400;color:#9a9070;font-size:9.5px;display:block;margin-top:1px;}
+  .field-row input, .field-row select{
+    border:1.5px solid var(--line);border-radius:7px;padding:8px 9px;font-size:13px;font-family:inherit;
+    background:#fff;color:var(--ink);width:100%;
+  }
+  .field-row input:focus, .field-row select:focus{outline:none;border-color:var(--steel);}
+  .auto-value{
+    border:1.5px solid var(--line-soft);border-radius:7px;padding:8px 9px;font-size:13px;
+    background:#efece0;color:var(--ink-soft);width:100%;
+  }
+  .field-2col{display:grid;grid-template-columns:1fr 1fr;gap:0 10px;}
+  .add-building-btn{
+    width:100%;border:1.5px dashed var(--steel);color:var(--steel);background:transparent;border-radius:8px;
+    padding:10px;font-size:13.5px;font-weight:600;font-family:inherit;
+    display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:12px;
+  }
+  .add-building-btn:active{background:var(--steel-soft);}
+  .kurum-block h4{margin:2px 0 8px;font-size:12.5px;color:var(--ink);}
+
+  /* ---- Oda ekleme paneli (arama) ---- */
+  .picker-backdrop{
+    position:fixed;inset:0;background:rgba(20,28,36,.5);z-index:50;display:flex;align-items:flex-end;
+  }
+  .picker{
+    background:var(--paper);width:100%;max-height:85vh;border-radius:16px 16px 0 0;
+    display:flex;flex-direction:column;border-top:3px solid var(--copper);
+  }
+  .picker-head{padding:14px 14px 10px;border-bottom:1.5px solid var(--line);}
+  .picker-head h3{margin:0 0 8px;font-size:15px;}
+  .picker-head input{
+    width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;
+    font-size:14.5px;font-family:inherit;background:#fff;
+  }
+  .picker-head input:focus{outline:none;border-color:var(--copper);}
+  .picker-list{overflow-y:auto;padding:6px 8px;flex:1;}
+  .picker-item{
+    padding:10px 10px;border-bottom:1px solid var(--line-soft);display:flex;justify-content:space-between;
+    align-items:center;gap:8px;
+  }
+  .picker-item .pname{font-size:13.5px;font-weight:600;}
+  .picker-item .pcat{font-size:11px;color:var(--ink-soft);margin-top:1px;}
+  .picker-item .ptags{display:flex;gap:4px;flex-shrink:0;}
+  .picker-item.excluded{opacity:.7;}
+  .picker-close{
+    padding:12px;text-align:center;font-size:13.5px;color:var(--ink-soft);border-top:1.5px solid var(--line);
+    background:var(--card);
+  }
+  .picker-custom{
+    margin:8px 8px 14px;padding:10px;border:1.5px dashed var(--line);border-radius:8px;font-size:12.5px;
+    color:var(--ink-soft);text-align:center;
+  }
+  .picker-custom button{
+    margin-top:8px;background:var(--ink);color:#fff;border:none;border-radius:7px;padding:8px 14px;
+    font-size:12.5px;font-family:inherit;
+  }
+
+  /* ---- Alt eylemler ---- */
+  .bottom-actions{display:flex;gap:8px;margin-top:6px;}
+  .action-btn{
+    flex:1;border-radius:8px;padding:11px;font-size:13px;font-weight:600;font-family:inherit;border:none;
+  }
+  .action-btn.copy{background:var(--steel);color:#fff;}
+  .action-btn.del{background:transparent;color:var(--danger);border:1.5px solid var(--danger-bg);}
+
+  /* ---- Referans paneli ---- */
+  .ref-toggle{
+    text-align:center;font-size:12px;color:var(--steel);padding:10px;text-decoration:underline;
+  }
+  .ref-panel{
+    background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:12px;margin-bottom:14px;
+    font-size:12px;
+  }
+  .ref-panel table{width:100%;border-collapse:collapse;font-size:11.5px;}
+  .ref-panel td{padding:4px 2px;border-bottom:1px solid var(--line-soft);}
+  .ref-panel td:last-child{text-align:right;font-family:'IBM Plex Mono',monospace;white-space:nowrap;}
+  .ref-panel h4{margin:10px 0 4px;font-size:12.5px;}
+  .ref-note{color:var(--ink-soft);font-size:11px;margin-top:8px;line-height:1.5;}
+
+  .toast{
+    position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;
+    padding:10px 18px;border-radius:20px;font-size:12.5px;z-index:80;box-shadow:0 4px 14px rgba(0,0,0,.25);
+  }
+
+  .installbtn{
+    margin-left:auto;flex-shrink:0;background:var(--copper);color:#fff;border:none;border-radius:8px;
+    padding:8px 11px;font-size:12px;font-weight:600;font-family:inherit;display:flex;align-items:center;gap:6px;
+  }
+  .installbtn:active{background:#9a4517;}
+  .install-modal-backdrop{
+    position:fixed;inset:0;background:rgba(20,25,32,.55);z-index:90;display:flex;align-items:flex-end;justify-content:center;
+  }
+  .install-modal{
+    background:var(--card);width:100%;max-width:520px;border-radius:16px 16px 0 0;padding:20px 20px 26px;
+    max-height:82vh;overflow-y:auto;
+  }
+  .install-modal h3{margin:0 0 4px;font-size:16.5px;color:var(--ink);}
+  .install-modal .sub2{font-size:12px;color:var(--ink-soft);margin-bottom:16px;font-family:'IBM Plex Mono',monospace;}
+  .install-modal .steps{list-style:none;margin:0 0 16px;padding:0;}
+  .install-modal .steps li{
+    display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;font-size:13.5px;color:var(--ink);line-height:1.45;
+  }
+  .install-modal .steps li .num{
+    flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--copper);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:700;
+  }
+  .install-modal .steps li b{color:var(--copper);}
+  .install-modal .closebtn{
+    width:100%;background:var(--ink);color:#fff;border:none;border-radius:10px;padding:13px;
+    font-size:14px;font-weight:600;font-family:inherit;
+  }
+  .install-modal .note{
+    font-size:11.5px;color:var(--ink-soft);background:var(--warn-bg);border:1px solid var(--warn);
+    border-radius:8px;padding:9px 11px;margin-bottom:16px;line-height:1.5;
+  }
+</style>
+</head>
+<body>
+<header class="app">
+  <div class="row1">
+    <button class="backbtn" id="backBtn" style="display:none;" onclick="goList()">‹ Okullar</button>
+    <div>
+      <h1 id="headerTitle">Saha Keşif — Data Ucu Hesap Aracı</h1>
+      <div class="sub" id="headerSub">Faz-4 Yerel Alan Ağı Teknik Şartnamesi · madde 6</div>
+    </div>
+    <button class="installbtn" id="installBtn" onclick="handleInstallClick()">📲 Ana Ekrana Ekle</button>
+  </div>
+</header>
+<main id="app"></main>
+
+<script>
+/* ================= VERİ MODELİ (Şartname madde 6, sayfa 9-11) ================= */
+
+// 20 temel mekân kategorisi
+const CATEGORIES = [
+  {key:'derslik', name:'Derslik', data:1, enerji:1, ap:0},
+  {key:'laboratuvar', name:'Laboratuvar', data:1, enerji:0, ap:0},
+  {key:'atolye', name:'Atölye', data:1, enerji:0, ap:0},
+  {key:'sanat', name:'Resim, Müzik, Sanat Odaları', data:1, enerji:0, ap:0},
+  {key:'mudur', name:'Müdür Odası', data:2, enerji:0, ap:0},
+  {key:'mudur_yrd', name:'Müdür Yardımcısı Odası', data:'p1', enerji:0, ap:0},
+  {key:'memur', name:'Memur Odaları', data:'p1', enerji:0, ap:0},
+  {key:'rehberlik', name:'Rehberlik Servisi Odası', data:'p1', enerji:0, ap:0},
+  {key:'calisma', name:'Çalışma Odası', data:1, enerji:0, ap:0},
+  {key:'etut', name:'Etüt Odası', data:1, enerji:0, ap:0},
+  {key:'ogretmenler', name:'Öğretmenler Odası', data:3, enerji:0, ap:1},
+  {key:'bt', name:'BT Sınıfı', data:1, enerji:0, ap:1},
+  {key:'kutuphane', name:'Kütüphane', data:1, enerji:0, ap:0},
+  {key:'z_kutuphane', name:'Z Kütüphane', data:1, enerji:0, ap:1},
+  {key:'konferans', name:'Konferans Salonu', data:1, enerji:0, ap:1},
+  {key:'toplanti', name:'Toplantı Odası', data:1, enerji:0, ap:1},
+  {key:'arsiv', name:'Arşiv (bilgisayar ve personel varsa)', data:1, enerji:0, ap:0},
+  {key:'ozel_egitim', name:'Özel Eğitim Hizmetleri Odası', data:1, enerji:0, ap:0},
+  {key:'zumre', name:'Zümre Odası', data:1, enerji:0, ap:0},
+  {key:'fotokopi', name:'Fotokopi Odası', data:1, enerji:0, ap:0},
+  {key:'oab', name:'Okul Aile Birliği Odası', data:1, enerji:0, ap:0},
+];
+
+// Sahada karşılaşılan 64 farklı oda adı -> karşılık geldiği kategori (madde 6.6 eki)
+// [isim, kategoriKey, dataOverride(varsa)]
+const ALIASES = [
+  ['Bilgisayar Dersliği','bt',2],['Bilgisayar Laboratuvarı','bt',2],
+  ['Uygulama Alanı','laboratuvar'],['Uygulama Odası','laboratuvar'],['Teknik Tasarım Odası','laboratuvar'],
+  ['Sanat Tasarım Odası','laboratuvar'],['Mesleki Teknoloji Alanı','laboratuvar'],['Yabancı Dil Odası','laboratuvar'],
+  ['Dyned Odası','laboratuvar'],['Deney Odası','laboratuvar'],['Fen Odası','laboratuvar'],
+  ['Aile Tüketici Hizmetleri Odası','atolye'],['Çocuk Gelişimi Odası','atolye'],['RTK Stüdyo','atolye'],
+  ['Radyo Odası','atolye'],['El Sanatları Odası','atolye'],['Temel İmalat Odası','atolye'],
+  ['Teknoloji Odası','atolye'],['Büro Yönetimi Odası','atolye'],
+  ['Teknoloji Tasarım Sınıfı','derslik'],['Halkeğitim Dersliği','derslik'],['Özel Eğitim Sınıfı','derslik'],
+  ['Engelli Eğitim Sınıfı','derslik'],['Özel Alt Sınıf','derslik'],['Özel Derslik','derslik'],['Özel Sınıf','derslik'],
+  ['Şube Müdürü Odası','memur'],['Milli Eğitim Şefi Odası','memur'],['Kalem Odası','memur'],['VHKİ Odası','memur'],
+  ['Büro','memur'],['Ofis','memur'],['ÖSYM Büro','memur'],['Mutemet Odası','memur'],['Taşınır İşlem Odası','memur'],
+  ['Döner Sermaye Odası','memur'],['Yazı İşleri Odası','memur'],
+  ['Görüşme Odası','rehberlik'],['Veli Görüşme Odası','rehberlik'],['Bireysel Görüşme Odası','rehberlik'],
+  ['Veli Odası','oab'],
+  ['Görsel Sanatlar Odası','sanat'],['Çizim Odası','sanat'],
+  ['Duyu Bütünleme Odası','ozel_egitim'],['ÖÇEM (Otistik Çocuklar Eğitim Merkezi)','ozel_egitim'],
+  ['Özel Eğitim Odası','ozel_egitim'],['Destek Odası','ozel_egitim'],
+  ['Komisyon Odası','toplanti'],
+  ['Teksir Odası','fotokopi'],
+  ['Kitaplık','kutuphane'],
+  ['Bilgisayar Bölüm Odası','zumre'],['Eğitmen Odası','zumre'],
+  ['Sözel Odası','calisma'],['Matematik Odası','calisma'],['Fizik Odası','calisma'],['Edebiyat Odası','calisma'],
+  ['Kurs Odaları','calisma'],['Bilgisayar Odası','calisma'],['Bilgisayar Çalışma Odası','calisma'],
+  ['Bilişim Odası','calisma'],['İnternet Odası','calisma'],['Etüt Salonu','calisma'],['Okuma Odası','calisma'],
+  ['Kültür Salonu','calisma'],
+];
+
+// Data ucu ÇEKİLMEYECEK alanlar listesi (madde 6.7 eki, 108 kalem)
+const EXCLUDED = [
+  'Elektrik Odası','Asit Odası','Oturma Odası','Pano Odası','Pozlama Odası','Arabuluculuk Odası',
+  'Saç Bakım Odası','Lobi, Hol, Salon','Dijital Baskı Odası','Akü Odası','Sunum Odası','Bilgisayar Format Odası',
+  'Zil Sistem Odası','Oyun Odası','Misafirhane','Oyun Alanı','İş Sağlığı Ve Güvenliği Odası','Misafir Odası',
+  'Simülatör Odası','Operatör Odası','Lazer Odası','Özel Bakım Odası','Yatak Odası','Öğrenci Odası',
+  'Pasif Oda','Yatakhane','Fotoğraf Stüdyosu','Bakım Odası','Ups Odası','Mobilya Atölyesi',
+  'Sosyal Alan','Strateji Odası','Veri Odası','Cilt Bakım Odası','Halk Oyunları Odası','Uzem Salonu',
+  'Hobi Odası','Koordinatör Odası','Giriş Kabul','Kalorifer Dairesi','Güvenlik Odası','Sorumlu Odası',
+  'Kaloriferci Odası','Bekçi Odası','Server Odası','Dinlenme Odası','Görevli Odası','Bilişim Servisi Odası',
+  'Dinlenme Alanı','Cihaz Odası','Prova Odası','Uyku Odası','Oturma Yeri','Gemicilik Odası',
+  'Sınav Merkezi','Müfettiş Odası','Çocuk Gelişimi Alanı','Sınav Salonu','Baskı Odası','Sendika Odası',
+  'Bireysel Oda','Atıl Depo','Servis Odası','Kostüm Odası','Pasif Depo','Stajyer Odası',
+  'Kooperatif Odası','Teknik Destek Odası','Formatör Odası','Kontrol Odası','Nöbetçi Öğrenci Odası','Genel Hizmet Odası',
+  'Kumanda Odası','Masaj Salonu','Ziyaretçi Odası','Arıza Odası','Berber','Protokol Odası',
+  'Teknik Servis Odası','Kuaför','Bilgi İşlem Odası','Elektrik Servis Odası','Öğrenci Meclisi','Boyahane',
+  'Otomasyon Odası','Arge Odası','Folklor Odası','Beden Eğitimi Salonu','Egzersiz Odası','İlkyardım Odası',
+  'Masa Tenisi Salonu','Disiplin Odası','Hasta Bakım Odası','Fitness Salonu','Ölçme Odası','Tiyatro Salonu',
+  'Spor Alanı','İzleme Odası','Drama Salonu','Beden Eğitimi Odası','Spor Kulübü','Beden Odası',
+  'Temrin Odası','Ölçü Aletleri Odası','Koridor','Danışma','Sistem Odası','Çok Amaçlı Salon',
+];
+
+const CAT_BY_KEY = {}; CATEGORIES.forEach(c=>CAT_BY_KEY[c.key]=c);
+
+// Tek bir arama kataloğu oluştur (kategori + takma ad + hariç liste)
+const CATALOG = [];
+CATEGORIES.forEach(c=>{
+  CATALOG.push({id:'c:'+c.key, label:c.name, sub:'Temel kategori', catKey:c.key, dataOverride:null, excluded:false});
+});
+ALIASES.forEach(([name,catKey,override])=>{
+  const c = CAT_BY_KEY[catKey];
+  CATALOG.push({id:'a:'+name, label:name, sub:'→ '+c.name, catKey:catKey, dataOverride: override || null, excluded:false});
+});
+EXCLUDED.forEach(name=>{
+  CATALOG.push({id:'x:'+name, label:name, sub:'Data ucu çekilmeyecek alan', catKey:null, dataOverride:null, excluded:true});
+});
+
+/* ================= DURUM & DEPOLAMA ================= */
+let SCHOOLS = {};       // {id: {id,name,createdAt,floors:[...]}}
+let CURRENT_ID = null;
+let VIEW = 'list';       // 'list' | 'detail'
+let PICKER_FOR = null;   // hangi kat için oda seçici açık {floorId}
+let PICKER_QUERY = '';
+
+const STORAGE_KEY = 'lan-survey-schools-v1';
+
+async function loadData(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){ SCHOOLS = JSON.parse(raw); }
+  }catch(e){ SCHOOLS = {}; }
+}
+async function saveData(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(SCHOOLS)); }
+  catch(e){ console.error('Kayıt hatası', e); showToast('Kayıt başarısız oldu'); }
+}
+
+/* ---- Dışa / İçe aktarma (cihazlar arası taşıma) ---- */
+window.exportData = function(){
+  const data = JSON.stringify(SCHOOLS, null, 2);
+  const blob = new Blob([data], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const d = new Date();
+  const stamp = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  a.href = url;
+  a.download = 'saha-kesif-yedek-'+stamp+'.json';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  showToast('Yedek dosyası indirildi');
+};
+window.triggerImport = function(){
+  const input = document.getElementById('importFile');
+  if(input) input.click();
+};
+window.importDataFile = function(input){
+  const file = input.files && input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    let parsed;
+    try{ parsed = JSON.parse(e.target.result); }
+    catch(err){ showToast('Dosya okunamadı, geçersiz JSON'); input.value=''; return; }
+    if(typeof parsed !== 'object' || parsed===null){ showToast('Dosya formatı tanınmadı'); input.value=''; return; }
+    const incomingCount = Object.keys(parsed).length;
+    const ok = confirm(incomingCount+' okul içe aktarılacak. Aynı isimli/ID\'li okullar mevcut verilerin üzerine yazılır, diğerleri eklenir. Devam edilsin mi?');
+    if(!ok){ input.value=''; return; }
+    SCHOOLS = Object.assign({}, SCHOOLS, parsed);
+    saveData();
+    VIEW='list'; CURRENT_ID=null;
+    render();
+    showToast('İçe aktarma tamamlandı');
+    input.value='';
+  };
+  reader.readAsText(file);
+};
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+
+/* ================= HESAPLAMALAR ================= */
+function computeRoom(room){
+  let perData=0, enerji=0, ap=0, excluded=false, capped=false;
+  if(room.custom){
+    perData = Math.max(0, Math.min(room.customData||0, 5));
+    enerji = room.customEnerji?1:0;
+    ap = room.customAp?1:0;
+  } else {
+    const entry = CATALOG.find(e=>e.id===room.catalogId);
+    if(!entry) return {perData:0,enerji:0,ap:0,excluded:false,capped:false,dataTotal:0,enerjiTotal:0,apTotal:0};
+    if(entry.excluded){ excluded = true; }
+    else{
+      const cat = CAT_BY_KEY[entry.catKey];
+      if(entry.dataOverride!=null){ perData = entry.dataOverride; }
+      else if(cat.data==='p1'){
+        const raw = (room.personel||0)+1;
+        perData = Math.min(raw,5);
+        capped = raw>5;
+      } else { perData = cat.data; }
+      enerji = cat.enerji; ap = cat.ap;
+    }
+  }
+  const adet = room.adet||1;
+  return {perData, enerji, ap, excluded, capped, dataTotal:perData*adet, enerjiTotal:enerji*adet, apTotal:ap*adet};
+}
+function computeFloor(floor){
+  let data=0,enerji=0,ap=0,rooms=0;
+  floor.rooms.forEach(r=>{ const c=computeRoom(r); data+=c.dataTotal; enerji+=c.enerjiTotal; ap+=c.apTotal; rooms+=(r.adet||1); });
+  return {data,enerji,ap,rooms};
+}
+function computeSchool(school){
+  let data=0,enerji=0,ap=0,rooms=0;
+  (school.floors||[]).forEach(f=>{ const c=computeFloor(f); data+=c.data; enerji+=c.enerji; ap+=c.ap; rooms+=c.rooms; });
+  return {data,enerji,ap,rooms,floors:(school.floors||[]).length};
+}
+function computeCategoryTotals(school){
+  const totals = {};
+  (school.floors||[]).forEach(floor=>{
+    (floor.rooms||[]).forEach(room=>{
+      if(room.custom) return;
+      const entry = CATALOG.find(e=>e.id===room.catalogId);
+      if(!entry || entry.excluded || !entry.catKey) return;
+      const k = entry.catKey;
+      if(!totals[k]) totals[k] = {adet:0, personel:0};
+      totals[k].adet += (room.adet||1);
+      totals[k].personel += (room.personel||0);
+    });
+  });
+  return totals;
+}
+
+// Fatih Enerji Panosu tipi — madde 35.11.15-19: derslik priz sayısına (=enerji ucu) göre belirlenir.
+// Madde 35.11.8: 67 ve üzeri derslikte ikinci pano kurulur (ana pano Tip-3/4, ikinci pano Tip-1/2).
+function panoInfo(enerjiUcu){
+  if(enerjiUcu<=0) return {durum:'yok', mesaj:'Bu okulda enerji ucu (derslik prizi) girilmedi — Fatih Enerji Panosu gerekmiyor.'};
+  if(enerjiUcu<=18) return {durum:'tek', tip:1, limit:18};
+  if(enerjiUcu<=30) return {durum:'tek', tip:2, limit:30};
+  if(enerjiUcu<=48) return {durum:'tek', tip:3, limit:48};
+  if(enerjiUcu<=66) return {durum:'tek', tip:4, limit:66};
+  return {durum:'cift', anaTip:'3 veya 4', ikinciTip:'1 veya 2'};
+}
+
+// Kabinet — madde 7: şartname data ucu sayısına bağlı sayısal bir eşik VERMEZ.
+// Seçim; sistem odası uygunluğu, kablo mesafesi (90m) ve bina yapısına göre yapılır.
+const KABINET_KRITERLERI = [
+  {tip:'42U / 26U / 16U', kural:'Ayrı bir sistem odası planlanmalı (16U için okul idaresi kararıyla kapalı bir personel odası da kabul edilebilir).', madde:'madde 7.1'},
+  {tip:'42U / 26U / 16U', kural:'Okulda tek kabinet kullanılıyorsa, kabinet binanın orta noktasına yakın, dikey/yatay kat geçişine uygun sistem odasına yerleştirilir.', madde:'madde 7.2'},
+  {tip:'9U / 4U', kural:'Ayrı sistem odası şartı aranmaz; öğrenci erişiminin az olduğu bir alan veya personel odası yeterlidir.', madde:'madde 7.3'},
+  {tip:'9U / 4U', kural:'Etkileşimli tahtası olmayan, sadece data planlanan binalarda ayrı enerji panosu kurulmaz; besleme en yakın kat panosundan 16A sigorta ile sağlanır.', madde:'madde 7.3.1'},
+  {tip:'Tümü', kural:'Kabinetten çıkacak data kablolaması 90 metreyi aşarsa ikinci bir kabinet planlanır.', madde:'madde 7.4'},
+];
+
+/* ================= RENDER ================= */
+const app = document.getElementById('app');
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+function render(){
+  document.getElementById('backBtn').style.display = VIEW==='detail' ? 'flex':'none';
+  if(VIEW==='list'){
+    document.getElementById('headerTitle').textContent = 'Saha Keşif — Data Ucu Hesap Aracı';
+    document.getElementById('headerSub').textContent = 'Faz-4 Yerel Alan Ağı Teknik Şartnamesi · madde 6';
+    renderList();
+  } else {
+    const s = SCHOOLS[CURRENT_ID];
+    document.getElementById('headerTitle').textContent = s ? s.name : 'Okul';
+    document.getElementById('headerSub').textContent = 'Kat ve sınıf bazlı data ucu dökümü';
+    renderDetail();
+  }
+  if(PICKER_FOR){ renderPicker(); }
+}
+
+function renderList(){
+  const ids = Object.keys(SCHOOLS).sort((a,b)=> (SCHOOLS[b].createdAt||0)-(SCHOOLS[a].createdAt||0));
+  let html = '';
+  if(ids.length===0){
+    html += `<div class="empty-hint">Henüz kayıtlı okul yok.<br>Keşfe başlamak için aşağıdan yeni okul ekle.</div>`;
+  } else {
+    ids.forEach(id=>{
+      const s = SCHOOLS[id];
+      const t = computeSchool(s);
+      html += `<div class="school-card" onclick="openSchool('${id}')">
+        <div>
+          <div class="name">${esc(s.name)}</div>
+          <div class="meta">${t.floors} kat · ${t.rooms} oda · ${t.data} data ucu</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>`;
+    });
+  }
+  html += `<button class="newschool" onclick="createSchool()">+ Yeni Okul Ekle</button>`;
+  html += `<div class="databtn-row">
+    <button class="databtn" onclick="exportData()">⭳ Dışa Aktar</button>
+    <button class="databtn" onclick="triggerImport()">⭱ İçe Aktar</button>
+  </div>`;
+  html += `<input type="file" id="importFile" accept="application/json" style="display:none" onchange="importDataFile(this)">`;
+  html += `<div class="ref-toggle" onclick="toggleRef()">${window.__refOpen?'Referans tabloyu gizle':'Şartname referans tablosunu göster'}</div>`;
+  if(window.__refOpen) html += renderRefPanel();
+  app.innerHTML = html;
+}
+
+function renderRefPanel(){
+  let rows = CATEGORIES.map(c=>{
+    const dtxt = c.data==='p1' ? 'Personel + 1' : c.data+' data ucu';
+    const extra = [];
+    if(c.enerji) extra.push('1 enerji ucu');
+    if(c.ap) extra.push('1 AP ucu');
+    return `<tr><td>${esc(c.name)}</td><td>${dtxt}${extra.length?' · '+extra.join(' · '):''}</td></tr>`;
+  }).join('');
+  return `<div class="ref-panel">
+    <h4>Standart mekân — data ucu tablosu</h4>
+    <table>${rows}</table>
+    <div class="ref-note">
+      • Bir odaya çekilecek data ucu hiçbir şekilde 5'i geçmez.<br>
+      • Enerji ucu yalnızca derslik (ve derslik sayılan, etkileşimli tahtası kurulu/kurulacak alanlar) için yapılır.<br>
+      • "P+1" = odayı kullanan, masası ve bilgisayarı olan personel sayısı + 1.<br>
+      • Oda ekle ekranındaki arama kutusuna sahada gördüğün ismi yazarsan (ör. "Kalem Odası", "Fen Odası") 64 kalemlik şartname eşleştirme listesinden otomatik kategori bulunur; data ucu çekilmeyecek 108 alan da listede uyarılı görünür.
+    </div>
+  </div>`;
+}
+window.toggleRef = function(){ window.__refOpen = !window.__refOpen; render(); };
+
+function renderSystemCard(t){
+  const open = !!window.__sysOpen;
+  const pano = panoInfo(t.enerji);
+  let panoHtml = '';
+  if(pano.durum==='yok'){
+    panoHtml = `<div class="sys-line">${pano.mesaj}</div>`;
+  } else if(pano.durum==='tek'){
+    panoHtml = `<div class="sys-result">
+        <span class="sys-tip">Tip-${pano.tip}</span>
+        <span class="sys-desc">Fatih Enerji Panosu</span>
+      </div>
+      <div class="sys-line">Okulda toplam <b>${t.enerji}</b> enerji ucu (derslik prizi) var. Tip-${pano.tip} pano en fazla <b>${pano.limit}</b> derslik prizi taşıyabilir — sınırın altındasın.</div>
+      <div class="sys-cite">Kaynak: madde 35.11.15–35.11.19</div>`;
+  } else {
+    panoHtml = `<div class="sys-result warn2">
+        <span class="sys-tip">2 Pano Gerekir</span>
+        <span class="sys-desc">Ana: Tip-${pano.anaTip} · İkinci: Tip-${pano.ikinciTip}</span>
+      </div>
+      <div class="sys-line">Okulda toplam <b>${t.enerji}</b> enerji ucu var, tek panonun taşıyabileceği en yüksek sınır olan 66'yı aşıyor. 67 ve üzeri derslikte ikinci bir pano kurulur; ana pano Tip-3 veya Tip-4, ikinci pano Tip-1 veya Tip-2 olur.</div>
+      <div class="sys-cite">Kaynak: madde 35.11.8, 35.11.15–35.11.19</div>`;
+  }
+
+  let kabinetHtml = `<div class="sys-line" style="margin-top:2px;">Şartname, kabinet büyüklüğünü (42U/26U/16U/9U/4U) doğrudan data ucu sayısına bağlayan sayısal bir eşik <b>vermiyor</b> — seçim aşağıdaki kriterlere göre yüklenici ve okul idaresinin ortak kararıyla yapılır:</div>
+    <ul class="sys-list">`;
+  KABINET_KRITERLERI.forEach(k=>{
+    kabinetHtml += `<li><b>${esc(k.tip)}:</b> ${esc(k.kural)} <span class="sys-cite">(${k.madde})</span></li>`;
+  });
+  kabinetHtml += `</ul><div class="sys-line" style="margin-top:6px;">Yönlendirici not: toplam <b>${t.data}</b> data ucu, sistem odasındaki patch panel/switch sayısını (dolayısıyla gereken U yüksekliğini) belirler — ne kadar çok data ucu ve bina/kat geçişi varsa o kadar büyük kabinet (26U/42U) gerekme ihtimali artar; tek bina, az odalı yerlerde 9U/4U yeterli olabilir. Bu genel bir eğilimdir, şartnamede sayısal karşılık yoktur.</div>`;
+
+  return `<div class="sys-card">
+    <div class="sys-head" onclick="toggleSys()">
+      <span>⚙ Kabinet & Pano Önerisi</span>
+      <span class="sys-chevron">${open?'▲':'▼'}</span>
+    </div>
+    ${open?`<div class="sys-body">
+      <h4>Enerji Panosu Tipi</h4>
+      ${panoHtml}
+      <h4 style="margin-top:14px;">Kabinet Büyüklüğü</h4>
+      ${kabinetHtml}
+    </div>`:''}
+  </div>`;
+}
+window.toggleSys = function(){ window.__sysOpen = !window.__sysOpen; render(); };
+
+/* ---- Resmi Altyapı Formu (bina bilgileri) — tek bina, otomatik doldurma ---- */
+const KULLANIM_SECENEKLERI = ['Ana Bina','Ek Bina','Atölye'];
+const KABINET_TURU_SECENEKLERI = ['','42U','26U','16U','9U','4U'];
+const GUZERGAH_SECENEKLERI = ['','Logar','Gerdirme','Direk','Kazı','Uzak Bina'];
+
+function ensureBuildingInfo(s){
+  if(!s.buildingInfo){
+    const b0 = (s.buildings && s.buildings[0]) || {};
+    s.buildingInfo = {
+      cbsNo: b0.cbsNo||'', kullanim: b0.kullanim||'Ana Bina', sistemOdasi: b0.sistemOdasi||0,
+      kabinetTuru: b0.kabinetTuru||'', baglanti: b0.baglanti||'', mesafe: b0.mesafe||0, foUtp: b0.foUtp||0
+    };
+    saveData();
+  }
+  return s.buildingInfo;
+}
+function numField(b, field, label, hint){
+  return `<div class="field-row">
+    <label>${esc(label)}${hint?`<span class="hint">${esc(hint)}</span>`:''}</label>
+    <input type="number" min="0" inputmode="numeric" value="${b[field]??0}" oninput="setBuildingInfoField('${field}',this.value,true)">
+  </div>`;
+}
+function textField(b, field, label, placeholder){
+  return `<div class="field-row">
+    <label>${esc(label)}</label>
+    <input type="text" placeholder="${esc(placeholder||'')}" value="${esc(b[field]||'')}" oninput="setBuildingInfoField('${field}',this.value,false)">
+  </div>`;
+}
+function selectField(b, field, label, options){
+  let opts = options.map(o=>`<option value="${esc(o)}" ${b[field]===o?'selected':''}>${o===''?'— Seçiniz —':esc(o)}</option>`).join('');
+  return `<div class="field-row">
+    <label>${esc(label)}</label>
+    <select onchange="setBuildingInfoField('${field}',this.value,false)">${opts}</select>
+  </div>`;
+}
+function autoField(label, value, hint){
+  return `<div class="field-row">
+    <label>${esc(label)}${hint?`<span class="hint">${esc(hint)}</span>`:''}</label>
+    <div class="auto-value mono">${value}</div>
+  </div>`;
+}
+
+function renderFormCard(s, t){
+  const open = !!s.formOpen;
+  const b = ensureBuildingInfo(s);
+  let body = '';
+  if(open){
+    const cat = computeCategoryTotals(s);
+    const g = k => (cat[k]?cat[k].adet:0);
+    const gp = k => (cat[k]?cat[k].personel:0);
+    const derslik = g('derslik');
+    const lab = g('laboratuvar')+g('atolye');
+    const btSayisi = g('bt');
+    const ogretmenler = g('ogretmenler');
+    const zkutuphane = g('z_kutuphane');
+    const konferans = g('konferans');
+    const mudur = g('mudur');
+    const mdrYardOda = g('mudur_yrd')+g('memur')+g('rehberlik');
+    const mdrYardPersonel = gp('mudur_yrd')+gp('memur')+gp('rehberlik');
+    const diger = g('sanat')+g('calisma')+g('etut')+g('ozel_egitim')+g('zumre')+g('fotokopi')+g('oab')+g('arsiv')+g('toplanti')+g('kutuphane');
+
+    body += `<p class="form-intro">Resmi "Altyapı Kurulacak Bina Sayısı" formundaki sayısal alanlar, kat/oda bilgilerinden otomatik hesaplanıyor (gri kutular). Yalnızca fiziksel/idari bilgileri (CBS no, kabinet türü, güzergah vb.) elle doldurman gerekiyor.</p>`;
+    body += textField(b,'cbsNo','Bina CBS Numarası');
+    body += selectField(b,'kullanim','Binanın Kullanım Amacı',KULLANIM_SECENEKLERI);
+    body += `<div class="field-2col">
+      ${autoField('Derslik Sayısı', derslik, '1×RJ45, 1×Enerji')}
+      ${autoField('Laboratuvar/Atölye Sayısı', lab, '1×RJ45, 1×Enerji')}
+    </div>`;
+    body += `<div class="field-2col">
+      ${autoField('BT Sınıfı', btSayisi, '1×RJ45,1×Enerji,1×AP')}
+      ${autoField('Öğretmenler Odası', ogretmenler, '3×RJ45, 1×AP')}
+    </div>`;
+    body += `<div class="field-2col">
+      ${autoField('Z Kütüphane', zkutuphane, '1×RJ45,(1×AP)')}
+      ${autoField('Konferans Salonu', konferans, '1×RJ45,(1×AP)')}
+    </div>`;
+    body += `<div class="field-2col">
+      ${autoField('Müdür Odası', mudur, '2×RJ45')}
+      ${numField(b,'sistemOdasi','Sistem Odası (Kabinet) Sayısı')}
+    </div>`;
+    body += `<div class="field-2col">
+      ${autoField('Mdr Yrd/Memur/Rehb. Oda Sayısı', mdrYardOda, '1×RJ45')}
+      ${autoField('Mdr Yrd/Memur/Rehb. Personel Sayısı', mdrYardPersonel, '1×RJ45')}
+    </div>`;
+    body += `<div class="field-2col">
+      ${autoField('Diğer Oda Sayıları', diger, '1×RJ45')}
+      ${autoField('Altyapı Kurulan Toplam Kat Sayısı', t.floors)}
+    </div>`;
+    body += selectField(b,'kabinetTuru','Kabinet Türü',KABINET_TURU_SECENEKLERI);
+    body += selectField(b,'baglanti','Ana Bina ile Bağlantı Güzergahı',GUZERGAH_SECENEKLERI);
+    body += `<div class="field-2col">
+      ${numField(b,'mesafe','Ek Binaya Mesafe (m)','Dışarıda, 0-999m')}
+      ${numField(b,'foUtp','F/O - UTP Metrajı (m)','Ana kabinete bağlantı')}
+    </div>`;
+    body += `<div class="field-2col">
+      ${autoField('Binadaki Toplam Uç Sayısı', t.data)}
+      ${autoField('Binadaki Toplam AP Sayısı', t.ap)}
+    </div>`;
+    body += `<div class="kurum-block">
+      <h4>Kurum Toplamları <span style="font-weight:400;color:var(--ink-soft);font-size:10.5px;">(tek bina olduğu için bina toplamlarıyla aynı)</span></h4>
+      <div class="field-2col">
+        ${autoField('Kurumdaki Toplam AP Sayısı', t.ap)}
+        ${autoField('Kurumdaki Toplam Uç Sayısı', t.data)}
+      </div>
+    </div>`;
+  }
+  return `<div class="form-card">
+    <div class="form-head" onclick="toggleForm()">
+      <span>📋 Resmi Altyapı Formu (Bina Bilgileri)</span>
+      <span class="sys-chevron">${open?'▲':'▼'}</span>
+    </div>
+    ${open?`<div class="form-body">${body}</div>`:''}
+  </div>`;
+}
+window.toggleForm = function(){
+  const s = SCHOOLS[CURRENT_ID]; if(!s) return;
+  s.formOpen = !s.formOpen; saveData(); render();
+};
+window.setBuildingInfoField = function(field, value, isNumber){
+  const s = SCHOOLS[CURRENT_ID]; if(!s) return;
+  const b = ensureBuildingInfo(s);
+  b[field] = isNumber ? (parseInt(value,10)||0) : value;
+  saveData();
+};
+window.setKurumField = function(field, value){
+  const s = SCHOOLS[CURRENT_ID]; if(!s) return;
+  s[field] = parseInt(value,10)||0;
+  saveData();
+};
+
+function renderDetail(){
+  const s = SCHOOLS[CURRENT_ID];
+  if(!s){ VIEW='list'; render(); return; }
+  const t = computeSchool(s);
+  let html = `<input class="schoolname-edit" value="${esc(s.name)}" oninput="renameSchool(this.value)" placeholder="Okul adı">`;
+  html += `<div class="school-sub">Oluşturuldu: ${new Date(s.createdAt).toLocaleDateString('tr-TR')}</div>`;
+  html += `<div class="summary-bar">
+    <div class="cell"><span class="num mono">${t.floors}</span><span class="lbl">Kat</span></div>
+    <div class="cell"><span class="num mono">${t.rooms}</span><span class="lbl">Oda</span></div>
+    <div class="cell accent"><span class="num mono">${t.data}</span><span class="lbl">Data Ucu</span></div>
+    <div class="cell steel"><span class="num mono">${t.ap}</span><span class="lbl">AP Ucu</span></div>
+  </div>`;
+
+  html += renderSystemCard(t);
+  html += renderFormCard(s, t);
+
+  (s.floors||[]).forEach(floor=>{
+    const fc = computeFloor(floor);
+    const floorOpen = floor.open!==false;
+    html += `<div class="floor">
+      <div class="floor-head">
+        <div class="floor-title" onclick="toggleFloor('${floor.id}')">
+          <span class="floor-chevron">${floorOpen?'▾':'▸'}</span>
+          <span class="floor-name">${esc(floor.name)}</span>
+        </div>
+        <button class="floor-edit" onclick="event.stopPropagation();promptRenameFloor('${floor.id}')">✎</button>
+        <button class="floor-del" onclick="event.stopPropagation();deleteFloor('${floor.id}')">✕</button>
+      </div>`;
+    if(floorOpen){
+      html += `<div class="floor-body">`;
+      if((floor.rooms||[]).length===0){
+        html += `<div style="font-size:12px;color:var(--ink-soft);padding:6px 2px 10px;">Bu kata henüz oda eklenmedi.</div>`;
+      }
+      (floor.rooms||[]).forEach(room=>{
+        html += renderRoomRow(floor.id, room);
+      });
+      html += `<button class="add-room-btn" onclick="openPicker('${floor.id}')">+ Oda Ekle</button>`;
+      html += `</div>`;
+    }
+    html += `<div class="floor-summary">
+      <span>Oda: <b>${fc.rooms}</b></span>
+      <span>Data: <b>${fc.data}</b></span>
+      <span>Enerji: <b>${fc.enerji}</b></span>
+      <span>AP: <b>${fc.ap}</b></span>
+    </div>`;
+    html += `</div>`;
+  });
+
+  html += `<button class="add-floor-btn" onclick="addFloor()">+ Kat Ekle</button>`;
+  html += `<div class="bottom-actions">
+    <button class="action-btn copy" onclick="copySummary()">Özeti Kopyala</button>
+    <button class="action-btn del" onclick="deleteSchool()">Okulu Sil</button>
+  </div>`;
+  app.innerHTML = html;
+}
+
+function roomLabel(room){
+  if(room.custom) return {name:room.customName||'Manuel oda', cat:'Manuel giriş'};
+  const entry = CATALOG.find(e=>e.id===room.catalogId);
+  if(!entry) return {name:'Bilinmeyen', cat:''};
+  return {name:entry.label, cat:entry.excluded?'Data ucu çekilmeyecek alan':(entry.sub==='Temel kategori'?'':entry.sub)};
+}
+
+function renderRoomRow(floorId, room){
+  const c = computeRoom(room);
+  const lab = roomLabel(room);
+  const entry = room.custom? null : CATALOG.find(e=>e.id===room.catalogId);
+  const isP1 = entry && !room.custom && CAT_BY_KEY[entry.catKey] && CAT_BY_KEY[entry.catKey].data==='p1' && entry.dataOverride==null;
+
+  let badges = '';
+  if(c.excluded){ badges += `<span class="badge excl">çekilmez</span>`; }
+  else{
+    badges += `<span class="badge data">${c.dataTotal} data</span>`;
+    if(c.enerjiTotal>0) badges += `<span class="badge enerji">${c.enerjiTotal} enerji</span>`;
+    if(c.apTotal>0) badges += `<span class="badge ap">${c.apTotal} AP</span>`;
+  }
+
+  let controls = `<div class="room-controls">
+    <span class="stepper-label">Adet</span>
+    <div class="stepper">
+      <button onclick="changeAdet('${floorId}','${room.id}',-1)">−</button>
+      <span class="val mono">${room.adet||1}</span>
+      <button onclick="changeAdet('${floorId}','${room.id}',1)">+</button>
+    </div>`;
+  if(isP1 && !c.excluded){
+    controls += `<span class="stepper-label">Personel</span>
+    <div class="stepper">
+      <button onclick="changePersonel('${floorId}','${room.id}',-1)">−</button>
+      <span class="val mono">${room.personel||0}</span>
+      <button onclick="changePersonel('${floorId}','${room.id}',1)">+</button>
+    </div>`;
+  }
+  controls += `<div style="margin-left:auto;display:flex;gap:5px;">${badges}</div></div>`;
+  if(c.capped){ controls += `<div class="cap-warn">Personel sayısına göre hesap 5 sınırına düşürüldü</div>`; }
+  if(c.excluded){ controls += `<div class="cap-warn">Bu alana normalde data ucu çekilmez — gerekiyorsa merkezi kontrol teşkilatı onayı gerekir.</div>`; }
+
+  return `<div class="room-row">
+    <div class="top">
+      <div class="rlabel">
+        <div class="name">${esc(lab.name)}</div>
+        ${lab.cat?`<div class="cat">${esc(lab.cat)}</div>`:''}
+      </div>
+      <button class="room-del" onclick="deleteRoom('${floorId}','${room.id}')">✕</button>
+    </div>
+    ${controls}
+    <input class="note-input" placeholder="Oda adı / numarası (ör. 101, Zemin kat sol koridor)" value="${esc(room.note||'')}" oninput="setRoomNote('${floorId}','${room.id}',this.value)">
+  </div>`;
+}
+
+/* ---- Oda seçici (arama) ---- */
+function renderPicker(){
+  const q = PICKER_QUERY.trim().toLowerCase();
+  let results = CATALOG;
+  if(q){
+    results = CATALOG.filter(e=> e.label.toLowerCase().includes(q) || (e.sub&&e.sub.toLowerCase().includes(q)) );
+  }
+  results = results.slice(0,60);
+  let items = results.map(e=>{
+    let tags='';
+    if(e.excluded){ tags='<span class="badge excl">çekilmez</span>'; }
+    else{
+      const cat = CAT_BY_KEY[e.catKey];
+      const dtxt = e.dataOverride!=null? e.dataOverride : (cat.data==='p1'?'P+1':cat.data);
+      tags = `<span class="badge data">${dtxt}</span>`;
+      if(cat.ap) tags += `<span class="badge ap">AP</span>`;
+      if(cat.enerji) tags += `<span class="badge enerji">enerji</span>`;
+    }
+    return `<div class="picker-item ${e.excluded?'excluded':''}" onclick="pickCatalog('${e.id.replace(/'/g,"\\'")}')">
+      <div><div class="pname">${esc(e.label)}</div>${e.sub?`<div class="pcat">${esc(e.sub)}</div>`:''}</div>
+      <div class="ptags">${tags}</div>
+    </div>`;
+  }).join('');
+  if(results.length===0){
+    items = `<div class="picker-custom">"${esc(PICKER_QUERY)}" listede bulunamadı.<br>Şartnamede tanımsız alanlara data ucu çekilmez; ihtiyaç varsa merkezi kontrol teşkilatı onayı gerekir.<br>
+    <button onclick="pickCustom()">Yine de manuel oda olarak ekle</button></div>`;
+  }
+
+  const html = `<div class="picker-backdrop" onclick="closePickerIfBackdrop(event)">
+    <div class="picker">
+      <div class="picker-head">
+        <h3>Oda türü seç</h3>
+        <input autofocus placeholder="Sahada gördüğün oda adını yaz (ör. Fen Odası)" value="${esc(PICKER_QUERY)}" oninput="PICKER_QUERY=this.value; renderPickerOnly();">
+      </div>
+      <div class="picker-list" id="pickerList">${items}</div>
+      <div class="picker-close" onclick="closePicker()">Kapat</div>
+    </div>
+  </div>`;
+  let holder = document.getElementById('pickerHolder');
+  if(!holder){ holder = document.createElement('div'); holder.id='pickerHolder'; document.body.appendChild(holder); }
+  holder.innerHTML = html;
+  const inputEl = holder.querySelector('.picker-head input');
+  if(inputEl){ const pos=inputEl.value.length; inputEl.focus(); inputEl.setSelectionRange(pos,pos); }
+}
+function renderPickerOnly(){ renderPicker(); }
+window.closePickerIfBackdrop = function(ev){ if(ev.target.classList.contains('picker-backdrop')) closePicker(); };
+window.closePicker = function(){ PICKER_FOR=null; PICKER_QUERY=''; const h=document.getElementById('pickerHolder'); if(h) h.innerHTML=''; };
+
+/* ================= EYLEMLER ================= */
+window.createSchool = function(){
+  const id = uid();
+  SCHOOLS[id] = {id, name:'Yeni Okul', createdAt:Date.now(), floors:[]};
+  CURRENT_ID = id; VIEW='detail';
+  saveData(); render();
+};
+window.openSchool = function(id){ CURRENT_ID=id; VIEW='detail'; render(); };
+window.goList = function(){ VIEW='list'; CURRENT_ID=null; render(); };
+window.renameSchool = function(val){ SCHOOLS[CURRENT_ID].name = val; saveData(); };
+window.deleteSchool = function(){
+  if(!confirm('Bu okulu ve tüm kayıtlı verilerini silmek istediğine emin misin?')) return;
+  delete SCHOOLS[CURRENT_ID]; CURRENT_ID=null; VIEW='list'; saveData(); render();
+};
+window.addFloor = function(){
+  const s = SCHOOLS[CURRENT_ID];
+  const n = (s.floors||[]).length+1;
+  s.floors = s.floors||[];
+  s.floors.push({id:uid(), name:'Kat '+n, rooms:[]});
+  saveData(); render();
+};
+window.renameFloor = function(floorId,val){
+  const f = SCHOOLS[CURRENT_ID].floors.find(x=>x.id===floorId); if(f){ f.name=val; saveData(); }
+};
+window.promptRenameFloor = function(floorId){
+  const s = SCHOOLS[CURRENT_ID]; if(!s) return;
+  const f = (s.floors||[]).find(x=>x.id===floorId); if(!f) return;
+  const val = prompt('Kat adı', f.name);
+  if(val!==null && val.trim()!==''){ f.name = val.trim(); saveData(); render(); }
+};
+window.toggleFloor = function(floorId){
+  const s = SCHOOLS[CURRENT_ID]; if(!s) return;
+  const f = (s.floors||[]).find(x=>x.id===floorId); if(!f) return;
+  const currentlyOpen = f.open!==false;
+  f.open = !currentlyOpen;
+  saveData(); render();
+};
+window.deleteFloor = function(floorId){
+  const s = SCHOOLS[CURRENT_ID];
+  s.floors = s.floors.filter(f=>f.id!==floorId);
+  saveData(); render();
+};
+window.openPicker = function(floorId){ PICKER_FOR = floorId; PICKER_QUERY=''; render(); };
+window.pickCatalog = function(catalogId){
+  const f = SCHOOLS[CURRENT_ID].floors.find(x=>x.id===PICKER_FOR);
+  f.rooms.push({id:uid(), catalogId, adet:1, personel:0});
+  closePicker(); saveData(); render();
+};
+window.pickCustom = function(){
+  const f = SCHOOLS[CURRENT_ID].floors.find(x=>x.id===PICKER_FOR);
+  f.rooms.push({id:uid(), custom:true, customName:PICKER_QUERY||'Manuel oda', customData:1, customEnerji:false, customAp:false, adet:1});
+  closePicker(); saveData(); render();
+};
+window.deleteRoom = function(floorId, roomId){
+  const f = SCHOOLS[CURRENT_ID].floors.find(x=>x.id===floorId);
+  f.rooms = f.rooms.filter(r=>r.id!==roomId);
+  saveData(); render();
+};
+window.changeAdet = function(floorId, roomId, delta){
+  const f = SCHOOLS[CURRENT_ID].floors.find(x=>x.id===floorId);
+  const r = f.rooms.find(x=>x.id===roomId);
+  r.adet = Math.max(1, (r.adet||1)+delta);
+  saveData(); render();
+};
+window.changePersonel = function(floorId, roomId, delta){
+  const f = SCHOOLS[CURRENT_ID].floors.find(x=>x.id===floorId);
+  const r = f.rooms.find(x=>x.id===roomId);
+  r.personel = Math.max(0, (r.personel||0)+delta);
+  saveData(); render();
+};
+window.setRoomNote = function(floorId, roomId, val){
+  const f = SCHOOLS[CURRENT_ID].floors.find(x=>x.id===floorId);
+  const r = f.rooms.find(x=>x.id===roomId);
+  r.note = val; saveData();
+};
+
+function showToast(msg){
+  const t = document.createElement('div'); t.className='toast'; t.textContent=msg;
+  document.body.appendChild(t); setTimeout(()=>t.remove(),1800);
+}
+
+window.copySummary = function(){
+  const s = SCHOOLS[CURRENT_ID];
+  const t = computeSchool(s);
+  let lines = [];
+  lines.push(s.name);
+  lines.push('Toplam: '+t.floors+' kat, '+t.rooms+' oda, '+t.data+' data ucu, '+t.enerji+' enerji ucu, '+t.ap+' AP ucu');
+  const pano = panoInfo(t.enerji);
+  if(pano.durum==='tek') lines.push('Enerji Panosu: Tip-'+pano.tip+' (en fazla '+pano.limit+' derslik prizi)');
+  else if(pano.durum==='cift') lines.push('Enerji Panosu: 2 pano gerekir — Ana Tip-'+pano.anaTip+', İkinci Tip-'+pano.ikinciTip);
+  lines.push('');
+  (s.floors||[]).forEach(floor=>{
+    const fc = computeFloor(floor);
+    lines.push('— '+floor.name+' ('+fc.rooms+' oda, '+fc.data+' data, '+fc.enerji+' enerji, '+fc.ap+' AP)');
+    (floor.rooms||[]).forEach(room=>{
+      const c = computeRoom(room);
+      const lab = roomLabel(room);
+      const adet = room.adet||1;
+      let seg = '   '+lab.name+(room.note?' — '+room.note:'')+(adet>1?' x'+adet:'');
+      if(c.excluded){ seg += ' — data ucu çekilmez'; }
+      else{
+        seg += ' — '+c.dataTotal+' data';
+        if(c.enerjiTotal) seg += ', '+c.enerjiTotal+' enerji';
+        if(c.apTotal) seg += ', '+c.apTotal+' AP';
+      }
+      lines.push(seg);
+    });
+  });
+  const text = lines.join('\n');
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>showToast('Özet panoya kopyalandı')).catch(()=>showToast('Kopyalanamadı'));
+  } else { showToast('Kopyalama desteklenmiyor'); }
+};
+
+/* ================= ANA EKRANA EKLE ================= */
+let DEFERRED_INSTALL_PROMPT = null;
+
+function isStandaloneMode(){
+  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+}
+
+window.addEventListener('beforeinstallprompt', (e)=>{
+  e.preventDefault();
+  DEFERRED_INSTALL_PROMPT = e;
+});
+
+window.addEventListener('appinstalled', ()=>{
+  DEFERRED_INSTALL_PROMPT = null;
+  showToast('Uygulama ana ekrana eklendi');
+});
+
+function detectPlatform(){
+  const ua = navigator.userAgent || '';
+  const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
+  const isAndroid = /Android/.test(ua);
+  return {isIOS, isAndroid};
+}
+
+window.handleInstallClick = async function(){
+  if(isStandaloneMode()){
+    showToast('Uygulama zaten ana ekranda açık');
+    return;
+  }
+  if(DEFERRED_INSTALL_PROMPT){
+    DEFERRED_INSTALL_PROMPT.prompt();
+    const choice = await DEFERRED_INSTALL_PROMPT.userChoice;
+    DEFERRED_INSTALL_PROMPT = null;
+    if(choice && choice.outcome==='accepted'){ showToast('Ekleniyor…'); }
+    return;
+  }
+  showManualInstallModal();
+};
+
+function showManualInstallModal(){
+  const {isIOS, isAndroid} = detectPlatform();
+  let stepsHtml = '';
+  let title = 'Ana Ekrana Ekle';
+  let sub = '';
+
+  if(isIOS){
+    sub = 'iPhone / iPad — Safari üzerinden';
+    stepsHtml = `
+      <li><span class="num">1</span><div>Bu sayfayı <b>Safari</b> ile açtığından emin ol (Chrome'da bu adım çalışmaz).</div></li>
+      <li><span class="num">2</span><div>Alt (veya üst) çubuktaki <b>Paylaş</b> simgesine dokun — kare içinden yukarı ok.</div></li>
+      <li><span class="num">3</span><div>Açılan listede aşağı kaydır, <b>"Ana Ekrana Ekle"</b> seçeneğine dokun.</div></li>
+      <li><span class="num">4</span><div><b>Ekle</b>'ye dokun. Simge ana ekranında görünecek.</div></li>
+    `;
+  } else if(isAndroid){
+    sub = 'Android — Chrome üzerinden';
+    stepsHtml = `
+      <li><span class="num">1</span><div>Dosyayı bir "Dosyalar" uygulamasından değil, Chrome'un <b>İndirilenler</b> sayfasından (chrome://downloads) açmayı dene — adres çubuğunda gerçek bir adres görünmeli.</div></li>
+      <li><span class="num">2</span><div>Sağ üstteki <b>⋮</b> menüsüne dokun.</div></li>
+      <li><span class="num">3</span><div>Listede <b>"Ana ekrana ekle"</b> ya da <b>"Uygulamayı yükle"</b> seçeneğini bul (menüde aşağı kaydırman gerekebilir).</div></li>
+      <li><span class="num">4</span><div>Bu seçenek çıkmıyorsa, sayfa yerel bir dosyadan (content://) açılıyor demektir — Chrome bu durumda otomatik yükleme sunmaz; yine de simgesiz bir kısayol eklemeyi deneyebilirsin.</div></li>
+    `;
+  } else {
+    sub = 'Bilgisayar — Chrome/Edge üzerinden';
+    stepsHtml = `
+      <li><span class="num">1</span><div>Adres çubuğunun sağındaki <b>yükle simgesine</b> (⊕ veya bilgisayar ikonu) tıkla.</div></li>
+      <li><span class="num">2</span><div>Görünmüyorsa sağ üst <b>⋮</b> menüsünden <b>"Uygulamayı yükle"</b> seçeneğini kullan.</div></li>
+    `;
+  }
+
   const note = (!isIOS && !isAndroid) ? '' : `<div class="note">Not: Bu buton, tarayıcının otomatik yükleme penceresini açmaya çalışır. Cihazın/tarayıcın bunu desteklemiyorsa (ör. dosya yerel bir klasörden açıldıysa) aşağıdaki adımları elle takip etmen gerekir.</div>`;
 
   const html = `<div class="install-modal-backdrop" onclick="closeInstallModalIfBackdrop(event)">
